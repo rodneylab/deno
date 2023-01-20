@@ -11,7 +11,7 @@
 
 # trying-deno-fresh
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/trying-deno-fresh)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/deno/tree/main/demos/trying-deno-fresh)
 
 Code from Rodney Lab
 <a aria-label="Open Rodney Lab blog post on trying out Deno fresh" href="https://rodneylab.com/trying-out-deno-fresh/">trying
