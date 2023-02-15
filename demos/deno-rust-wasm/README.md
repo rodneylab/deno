@@ -14,8 +14,10 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/deno/demos/deno-rust-wasm)
 
 Code from Rodney Lab
-<a aria-label="Open Rodney Lab blog post on trying out Deno fresh" href="https://rodneylab.com/deno-fresh-wasm/">Deno Fresh WASM blog post</a> in which we generate Base64 image placeholders from files to learn how to use Rsut WASM with Deno. If you have any questions, please drop a comment
-at the bottom of that page.
+<a aria-label="Open Rodney Lab blog post on trying out Deno fresh" href="https://rodneylab.com/deno-fresh-wasm/">Deno
+Fresh WASM blog post</a> in which we generate Base64 image placeholders from
+files to learn how to use Rust WASM with Deno. If you have any questions, please
+drop a comment at the bottom of that page.
 
 # Deno Rust WASM
 
