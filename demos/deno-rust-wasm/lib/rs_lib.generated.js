@@ -1,7 +1,7 @@
 // @generated file from wasmbuild -- do not edit
 // deno-lint-ignore-file
 // deno-fmt-ignore-file
-// source-hash: b3654ef59c962621e2a3f306de3be817e10e3672
+// source-hash: 4da8db10fcee93a2228fcde53bf5596c82a74b95
 let wasm;
 
 const heap = new Array(32).fill(undefined);
@@ -187,16 +187,14 @@ function passArray8ToWasm0(arg, malloc) {
 export function base64_placeholder(data) {
   try {
     const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
-    var ptr0 = passArray8ToWasm0(data, wasm.__wbindgen_malloc);
-    var len0 = WASM_VECTOR_LEN;
+    const ptr0 = passArray8ToWasm0(data, wasm.__wbindgen_malloc);
+    const len0 = WASM_VECTOR_LEN;
     wasm.base64_placeholder(retptr, ptr0, len0);
     var r0 = getInt32Memory0()[retptr / 4 + 0];
     var r1 = getInt32Memory0()[retptr / 4 + 1];
     return getStringFromWasm0(r0, r1);
   } finally {
     wasm.__wbindgen_add_to_stack_pointer(16);
-    data.set(getUint8Memory0().subarray(ptr0 / 1, ptr0 / 1 + len0));
-    wasm.__wbindgen_free(ptr0, len0 * 1);
     wasm.__wbindgen_free(r0, r1);
   }
 }
@@ -351,554 +349,6 @@ export function to_image_data(photon_image) {
   photon_image.ptr = 0;
   const ret = wasm.to_image_data(ptr0);
   return takeObject(ret);
-}
-
-/**
- * Apply gamma correction.
- * Image manipulation effects in the LCh colour space
- *
- * Effects include:
- * * **saturate** - Saturation increase.
- * * **desaturate** - Desaturate the image.
- * * **shift_hue** - Hue rotation by a specified number of degrees.
- * * **darken** - Decrease the brightness.
- * * **lighten** - Increase the brightness.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `mode` - The effect desired to be applied. Choose from: `saturate`, `desaturate`, `shift_hue`, `darken`, `lighten`
- * * `amt` - A float value from 0 to 1 which represents the amount the effect should be increased by.
- * # Example
- * ```no_run
- * // For example to increase the saturation by 10%:
- * use photon_rs::colour_spaces::lch;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * lch(&mut img, "saturate", 0.1_f32);
- * ```
- * @param {PhotonImage} photon_image
- * @param {string} mode
- * @param {number} amt
- */
-export function lch(photon_image, mode, amt) {
-  _assertClass(photon_image, PhotonImage);
-  const ptr0 = passStringToWasm0(
-    mode,
-    wasm.__wbindgen_malloc,
-    wasm.__wbindgen_realloc,
-  );
-  const len0 = WASM_VECTOR_LEN;
-  wasm.lch(photon_image.ptr, ptr0, len0, amt);
-}
-
-/**
- * Image manipulation effects in the HSL colour space.
- *
- * Effects include:
- * * **saturate** - Saturation increase.
- * * **desaturate** - Desaturate the image.
- * * **shift_hue** - Hue rotation by a specified number of degrees.
- * * **darken** - Decrease the brightness.
- * * **lighten** - Increase the brightness.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `mode` - The effect desired to be applied. Choose from: `saturate`, `desaturate`, `shift_hue`, `darken`, `lighten`
- * * `amt` - A float value from 0 to 1 which represents the amount the effect should be increased by.
- * # Example
- * ```no_run
- * // For example to increase the saturation by 10%:
- * use photon_rs::colour_spaces::hsl;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * hsl(&mut img, "saturate", 0.1_f32);
- * ```
- * @param {PhotonImage} photon_image
- * @param {string} mode
- * @param {number} amt
- */
-export function hsl(photon_image, mode, amt) {
-  _assertClass(photon_image, PhotonImage);
-  const ptr0 = passStringToWasm0(
-    mode,
-    wasm.__wbindgen_malloc,
-    wasm.__wbindgen_realloc,
-  );
-  const len0 = WASM_VECTOR_LEN;
-  wasm.hsl(photon_image.ptr, ptr0, len0, amt);
-}
-
-/**
- * Image manipulation in the HSV colour space.
- *
- * Effects include:
- * * **saturate** - Saturation increase.
- * * **desaturate** - Desaturate the image.
- * * **shift_hue** - Hue rotation by a specified number of degrees.
- * * **darken** - Decrease the brightness.
- * * **lighten** - Increase the brightness.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `mode` - The effect desired to be applied. Choose from: `saturate`, `desaturate`, `shift_hue`, `darken`, `lighten`
- * * `amt` - A float value from 0 to 1 which represents the amount the effect should be increased by.
- *
- * # Example
- * ```no_run
- * // For example to increase the saturation by 10%:
- * use photon_rs::colour_spaces::hsv;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * hsv(&mut img, "saturate", 0.1_f32);
- * ```
- * @param {PhotonImage} photon_image
- * @param {string} mode
- * @param {number} amt
- */
-export function hsv(photon_image, mode, amt) {
-  _assertClass(photon_image, PhotonImage);
-  const ptr0 = passStringToWasm0(
-    mode,
-    wasm.__wbindgen_malloc,
-    wasm.__wbindgen_realloc,
-  );
-  const len0 = WASM_VECTOR_LEN;
-  wasm.hsv(photon_image.ptr, ptr0, len0, amt);
-}
-
-/**
- * Shift hue by a specified number of degrees in the HSL colour space.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `mode` - A float value from 0 to 1 which is the amount to shift the hue by, or hue rotate by.
- *
- * # Example
- * ```no_run
- * // For example to hue rotate/shift the hue by 120 degrees in the HSL colour space:
- * use photon_rs::colour_spaces::hue_rotate_hsl;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * hue_rotate_hsl(&mut img, 120_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} degrees
- */
-export function hue_rotate_hsl(img, degrees) {
-  _assertClass(img, PhotonImage);
-  wasm.hue_rotate_hsl(img.ptr, degrees);
-}
-
-/**
- * Shift hue by a specified number of degrees in the HSV colour space.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `mode` - A float value from 0 to 1 which is the amount to shift the hue by, or hue rotate by.
- *
- * # Example
- * ```no_run
- * // For example to hue rotate/shift the hue by 120 degrees in the HSV colour space:
- * use photon_rs::colour_spaces::hue_rotate_hsv;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * hue_rotate_hsv(&mut img, 120_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} degrees
- */
-export function hue_rotate_hsv(img, degrees) {
-  _assertClass(img, PhotonImage);
-  wasm.hue_rotate_hsv(img.ptr, degrees);
-}
-
-/**
- * Shift hue by a specified number of degrees in the LCh colour space.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `mode` - A float value from 0 to 1 which is the amount to shift the hue by, or hue rotate by.
- *
- * # Example
- * ```no_run
- * // For example to hue rotate/shift the hue by 120 degrees in the HSL colour space:
- * use photon_rs::colour_spaces::hue_rotate_lch;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * hue_rotate_lch(&mut img, 120_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} degrees
- */
-export function hue_rotate_lch(img, degrees) {
-  _assertClass(img, PhotonImage);
-  wasm.hue_rotate_lch(img.ptr, degrees);
-}
-
-/**
- * Increase the image's saturation by converting each pixel's colour to the HSL colour space
- * and increasing the colour's saturation.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to increase the saturation by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Increasing saturation by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to increase saturation by 10% in the HSL colour space:
- * use photon_rs::colour_spaces::saturate_hsl;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * saturate_hsl(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function saturate_hsl(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.saturate_hsl(img.ptr, level);
-}
-
-/**
- * Increase the image's saturation in the LCh colour space.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to increase the saturation by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Increasing saturation by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to increase saturation by 40% in the Lch colour space:
- * use photon_rs::colour_spaces::saturate_lch;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * saturate_lch(&mut img, 0.4_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function saturate_lch(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.saturate_lch(img.ptr, level);
-}
-
-/**
- * Increase the image's saturation in the HSV colour space.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level by which to increase the saturation by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Increasing saturation by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to increase saturation by 30% in the HSV colour space:
- * use photon_rs::colour_spaces::saturate_hsv;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * saturate_hsv(&mut img, 0.3_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function saturate_hsv(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.saturate_hsv(img.ptr, level);
-}
-
-/**
- * Lighten an image by a specified amount in the LCh colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to lighten the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Lightening by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to lighten an image by 10% in the LCh colour space:
- * use photon_rs::colour_spaces::lighten_lch;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * lighten_lch(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function lighten_lch(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.lighten_lch(img.ptr, level);
-}
-
-/**
- * Lighten an image by a specified amount in the HSL colour space.
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to lighten the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Lightening by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to lighten an image by 10% in the HSL colour space:
- * use photon_rs::colour_spaces::lighten_hsl;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * lighten_hsl(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function lighten_hsl(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.lighten_hsl(img.ptr, level);
-}
-
-/**
- * Lighten an image by a specified amount in the HSV colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to lighten the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Lightening by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to lighten an image by 10% in the HSV colour space:
- * use photon_rs::colour_spaces::lighten_hsv;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * lighten_hsv(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function lighten_hsv(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.lighten_hsv(img.ptr, level);
-}
-
-/**
- * Darken the image by a specified amount in the LCh colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to darken the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Darkening by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to darken an image by 10% in the LCh colour space:
- * use photon_rs::colour_spaces::darken_lch;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * darken_lch(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function darken_lch(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.darken_lch(img.ptr, level);
-}
-
-/**
- * Darken the image by a specified amount in the HSL colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to darken the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Darkening by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to darken an image by 10% in the HSL colour space:
- * use photon_rs::colour_spaces::darken_hsl;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * darken_hsl(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function darken_hsl(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.darken_hsl(img.ptr, level);
-}
-
-/**
- * Darken the image's colours by a specified amount in the HSV colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to darken the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Darkening by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to darken an image by 10% in the HSV colour space:
- * use photon_rs::colour_spaces::darken_hsv;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * darken_hsv(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function darken_hsv(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.darken_hsv(img.ptr, level);
-}
-
-/**
- * Desaturate the image by a specified amount in the HSV colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to desaturate the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Desaturating by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to desaturate an image by 10% in the HSV colour space:
- * use photon_rs::colour_spaces::desaturate_hsv;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * desaturate_hsv(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function desaturate_hsv(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.desaturate_hsv(img.ptr, level);
-}
-
-/**
- * Desaturate the image by a specified amount in the HSL colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to desaturate the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Desaturating by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to desaturate an image by 10% in the LCh colour space:
- * use photon_rs::colour_spaces::desaturate_hsl;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * desaturate_hsl(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function desaturate_hsl(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.desaturate_hsl(img.ptr, level);
-}
-
-/**
- * Desaturate the image by a specified amount in the LCh colour space.
- *
- * # Arguments
- * * `img` - A PhotonImage.
- * * `level` - Float value from 0 to 1 representing the level to which to desaturate the image by.
- * The `level` must be from 0 to 1 in floating-point, `f32` format.
- * Desaturating by 80% would be represented by a `level` of 0.8
- *
- * # Example
- * ```no_run
- * // For example to desaturate an image by 10% in the LCh colour space:
- * use photon_rs::colour_spaces::desaturate_lch;
- * use photon_rs::native::open_image;
- *
- * // Open the image. A PhotonImage is returned.
- * let mut img = open_image("img.jpg").expect("File should open");
- * desaturate_lch(&mut img, 0.1_f32);
- * ```
- * @param {PhotonImage} img
- * @param {number} level
- */
-export function desaturate_lch(img, level) {
-  _assertClass(img, PhotonImage);
-  wasm.desaturate_lch(img.ptr, level);
-}
-
-/**
- * Mix image with a single color, supporting passing `opacity`.
- * The algorithm comes from Jimp. See `function mix` and `function colorFn` at following link:
- * https://github.com/oliver-moran/jimp/blob/29679faa597228ff2f20d34c5758e4d2257065a3/packages/plugin-color/src/index.js
- * Specifically, result_value = (mix_color_value - origin_value) * opacity + origin_value =
- * mix_color_value * opacity + (1 - opacity) * origin_value for each
- * of RGB channel.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage that contains a view into the image.
- * * `mix_color` - the color to be mixed in, as an RGB value.
- * * `opacity` - the opacity of color when mixed to image. Float value from 0 to 1.
- * # Example
- *
- * ```no_run
- * // For example, to mix an image with rgb (50, 255, 254) and opacity 0.4:
- * use photon_rs::Rgb;
- * use photon_rs::colour_spaces::mix_with_colour;
- * use photon_rs::native::open_image;
- *
- * let mix_colour = Rgb::new(50_u8, 255_u8, 254_u8);
- * let mut img = open_image("img.jpg").expect("File should open");
- * mix_with_colour(&mut img, mix_colour, 0.4_f32);
- * ```
- * @param {PhotonImage} photon_image
- * @param {Rgb} mix_colour
- * @param {number} opacity
- */
-export function mix_with_colour(photon_image, mix_colour, opacity) {
-  _assertClass(photon_image, PhotonImage);
-  _assertClass(mix_colour, Rgb);
-  var ptr0 = mix_colour.ptr;
-  mix_colour.ptr = 0;
-  wasm.mix_with_colour(photon_image.ptr, ptr0, opacity);
 }
 
 /**
@@ -1360,6 +810,303 @@ export function prewitt_horizontal(photon_image) {
 export function sobel_vertical(photon_image) {
   _assertClass(photon_image, PhotonImage);
   wasm.sobel_vertical(photon_image.ptr);
+}
+
+/**
+ * Apply a monochrome effect of a certain colour.
+ *
+ * It does so by averaging the R, G, and B values of a pixel, and then adding a
+ * separate value to that averaged value for each channel to produce a tint.
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `r_offset` - The value to add to the Red channel per pixel.
+ * * `g_offset` - The value to add to the Green channel per pixel.
+ * * `b_offset` - The value to add to the Blue channel per pixel.
+ *
+ * # Example
+ *
+ * ```no_run
+ * // For example, to apply a monochrome effect to an image:
+ * use photon_rs::monochrome::monochrome;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * monochrome(&mut img, 40_u32, 50_u32, 100_u32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} r_offset
+ * @param {number} g_offset
+ * @param {number} b_offset
+ */
+export function monochrome(img, r_offset, g_offset, b_offset) {
+  _assertClass(img, PhotonImage);
+  wasm.monochrome(img.ptr, r_offset, g_offset, b_offset);
+}
+
+/**
+ * Convert an image to sepia.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to sepia an image of type `PhotonImage`:
+ * use photon_rs::monochrome::sepia;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * sepia(&mut img);
+ * ```
+ * @param {PhotonImage} img
+ */
+export function sepia(img) {
+  _assertClass(img, PhotonImage);
+  wasm.sepia(img.ptr);
+}
+
+/**
+ * Convert an image to grayscale using the conventional averaging algorithm.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to convert an image of type `PhotonImage` to grayscale:
+ * use photon_rs::monochrome::grayscale;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * grayscale(&mut img);
+ * ```
+ * @param {PhotonImage} img
+ */
+export function grayscale(img) {
+  _assertClass(img, PhotonImage);
+  wasm.grayscale(img.ptr);
+}
+
+/**
+ * Convert an image to grayscale with a human corrected factor, to account for human vision.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to convert an image of type `PhotonImage` to grayscale with a human corrected factor:
+ * use photon_rs::monochrome::grayscale_human_corrected;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * grayscale_human_corrected(&mut img);
+ * ```
+ * @param {PhotonImage} img
+ */
+export function grayscale_human_corrected(img) {
+  _assertClass(img, PhotonImage);
+  wasm.grayscale_human_corrected(img.ptr);
+}
+
+/**
+ * Desaturate an image by getting the min/max of each pixel's RGB values.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to desaturate an image:
+ * use photon_rs::monochrome::desaturate;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * desaturate(&mut img);
+ * ```
+ * @param {PhotonImage} img
+ */
+export function desaturate(img) {
+  _assertClass(img, PhotonImage);
+  wasm.desaturate(img.ptr);
+}
+
+/**
+ * Uses a min. decomposition algorithm to convert an image to greyscale.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to decompose an image with min decomposition:
+ * use photon_rs::monochrome::decompose_min;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * decompose_min(&mut img);
+ * ```
+ * @param {PhotonImage} img
+ */
+export function decompose_min(img) {
+  _assertClass(img, PhotonImage);
+  wasm.decompose_min(img.ptr);
+}
+
+/**
+ * Uses a max. decomposition algorithm to convert an image to greyscale.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to decompose an image with max decomposition:
+ * use photon_rs::monochrome::decompose_max;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * decompose_max(&mut img);
+ * ```
+ * @param {PhotonImage} img
+ */
+export function decompose_max(img) {
+  _assertClass(img, PhotonImage);
+  wasm.decompose_max(img.ptr);
+}
+
+/**
+ * Employ only a limited number of gray shades in an image.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `num_shades` - The number of grayscale shades to be displayed in the image.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to limit an image to four shades of gray only:
+ * use photon_rs::monochrome::grayscale_shades;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * grayscale_shades(&mut img, 4_u8);
+ * ```
+ * @param {PhotonImage} photon_image
+ * @param {number} num_shades
+ */
+export function grayscale_shades(photon_image, num_shades) {
+  _assertClass(photon_image, PhotonImage);
+  wasm.grayscale_shades(photon_image.ptr, num_shades);
+}
+
+/**
+ * Convert an image to grayscale by setting a pixel's 3 RGB values to the Red channel's value.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::monochrome::r_grayscale;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * r_grayscale(&mut img);
+ * ```
+ * @param {PhotonImage} photon_image
+ */
+export function r_grayscale(photon_image) {
+  _assertClass(photon_image, PhotonImage);
+  wasm.r_grayscale(photon_image.ptr);
+}
+
+/**
+ * Convert an image to grayscale by setting a pixel's 3 RGB values to the Green channel's value.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::monochrome::g_grayscale;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * g_grayscale(&mut img);
+ * ```
+ * @param {PhotonImage} photon_image
+ */
+export function g_grayscale(photon_image) {
+  _assertClass(photon_image, PhotonImage);
+  wasm.g_grayscale(photon_image.ptr);
+}
+
+/**
+ * Convert an image to grayscale by setting a pixel's 3 RGB values to the Blue channel's value.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * # Example
+ *
+ * ```no_run
+ * use photon_rs::monochrome::b_grayscale;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * b_grayscale(&mut img);
+ * ```
+ * @param {PhotonImage} photon_image
+ */
+export function b_grayscale(photon_image) {
+  _assertClass(photon_image, PhotonImage);
+  wasm.b_grayscale(photon_image.ptr);
+}
+
+/**
+ * Convert an image to grayscale by setting a pixel's 3 RGB values to a chosen channel's value.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `channel` - A usize representing the channel from 0 to 2. O represents the Red channel, 1 the Green channel, and 2 the Blue channel.
+ * # Example
+ * To grayscale using only values from the Red channel:
+ * ```no_run
+ * use photon_rs::monochrome::single_channel_grayscale;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * single_channel_grayscale(&mut img, 0_usize);
+ * ```
+ * @param {PhotonImage} photon_image
+ * @param {number} channel
+ */
+export function single_channel_grayscale(photon_image, channel) {
+  _assertClass(photon_image, PhotonImage);
+  wasm.single_channel_grayscale(photon_image.ptr, channel);
+}
+
+/**
+ * Threshold an image using a standard thresholding algorithm.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `threshold` - The amount the image should be thresholded by from 0 to 255.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to threshold an image of type `PhotonImage`:
+ * use photon_rs::monochrome::threshold;
+ * use photon_rs::native::open_image;
+ *
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * threshold(&mut img, 30_u32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} threshold
+ */
+export function threshold(img, threshold) {
+  _assertClass(img, PhotonImage);
+  wasm.threshold(img.ptr, threshold);
 }
 
 /**
@@ -2211,303 +1958,6 @@ export function padding_bottom(img, padding, padding_rgba) {
 }
 
 /**
- * Apply a monochrome effect of a certain colour.
- *
- * It does so by averaging the R, G, and B values of a pixel, and then adding a
- * separate value to that averaged value for each channel to produce a tint.
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `r_offset` - The value to add to the Red channel per pixel.
- * * `g_offset` - The value to add to the Green channel per pixel.
- * * `b_offset` - The value to add to the Blue channel per pixel.
- *
- * # Example
- *
- * ```no_run
- * // For example, to apply a monochrome effect to an image:
- * use photon_rs::monochrome::monochrome;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * monochrome(&mut img, 40_u32, 50_u32, 100_u32);
- * ```
- * @param {PhotonImage} img
- * @param {number} r_offset
- * @param {number} g_offset
- * @param {number} b_offset
- */
-export function monochrome(img, r_offset, g_offset, b_offset) {
-  _assertClass(img, PhotonImage);
-  wasm.monochrome(img.ptr, r_offset, g_offset, b_offset);
-}
-
-/**
- * Convert an image to sepia.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * // For example, to sepia an image of type `PhotonImage`:
- * use photon_rs::monochrome::sepia;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * sepia(&mut img);
- * ```
- * @param {PhotonImage} img
- */
-export function sepia(img) {
-  _assertClass(img, PhotonImage);
-  wasm.sepia(img.ptr);
-}
-
-/**
- * Convert an image to grayscale using the conventional averaging algorithm.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * // For example, to convert an image of type `PhotonImage` to grayscale:
- * use photon_rs::monochrome::grayscale;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * grayscale(&mut img);
- * ```
- * @param {PhotonImage} img
- */
-export function grayscale(img) {
-  _assertClass(img, PhotonImage);
-  wasm.grayscale(img.ptr);
-}
-
-/**
- * Convert an image to grayscale with a human corrected factor, to account for human vision.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * // For example, to convert an image of type `PhotonImage` to grayscale with a human corrected factor:
- * use photon_rs::monochrome::grayscale_human_corrected;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * grayscale_human_corrected(&mut img);
- * ```
- * @param {PhotonImage} img
- */
-export function grayscale_human_corrected(img) {
-  _assertClass(img, PhotonImage);
-  wasm.grayscale_human_corrected(img.ptr);
-}
-
-/**
- * Desaturate an image by getting the min/max of each pixel's RGB values.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * // For example, to desaturate an image:
- * use photon_rs::monochrome::desaturate;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * desaturate(&mut img);
- * ```
- * @param {PhotonImage} img
- */
-export function desaturate(img) {
-  _assertClass(img, PhotonImage);
-  wasm.desaturate(img.ptr);
-}
-
-/**
- * Uses a min. decomposition algorithm to convert an image to greyscale.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * // For example, to decompose an image with min decomposition:
- * use photon_rs::monochrome::decompose_min;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * decompose_min(&mut img);
- * ```
- * @param {PhotonImage} img
- */
-export function decompose_min(img) {
-  _assertClass(img, PhotonImage);
-  wasm.decompose_min(img.ptr);
-}
-
-/**
- * Uses a max. decomposition algorithm to convert an image to greyscale.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * // For example, to decompose an image with max decomposition:
- * use photon_rs::monochrome::decompose_max;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * decompose_max(&mut img);
- * ```
- * @param {PhotonImage} img
- */
-export function decompose_max(img) {
-  _assertClass(img, PhotonImage);
-  wasm.decompose_max(img.ptr);
-}
-
-/**
- * Employ only a limited number of gray shades in an image.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `num_shades` - The number of grayscale shades to be displayed in the image.
- * # Example
- *
- * ```no_run
- * // For example, to limit an image to four shades of gray only:
- * use photon_rs::monochrome::grayscale_shades;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * grayscale_shades(&mut img, 4_u8);
- * ```
- * @param {PhotonImage} photon_image
- * @param {number} num_shades
- */
-export function grayscale_shades(photon_image, num_shades) {
-  _assertClass(photon_image, PhotonImage);
-  wasm.grayscale_shades(photon_image.ptr, num_shades);
-}
-
-/**
- * Convert an image to grayscale by setting a pixel's 3 RGB values to the Red channel's value.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * use photon_rs::monochrome::r_grayscale;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * r_grayscale(&mut img);
- * ```
- * @param {PhotonImage} photon_image
- */
-export function r_grayscale(photon_image) {
-  _assertClass(photon_image, PhotonImage);
-  wasm.r_grayscale(photon_image.ptr);
-}
-
-/**
- * Convert an image to grayscale by setting a pixel's 3 RGB values to the Green channel's value.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * use photon_rs::monochrome::g_grayscale;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * g_grayscale(&mut img);
- * ```
- * @param {PhotonImage} photon_image
- */
-export function g_grayscale(photon_image) {
-  _assertClass(photon_image, PhotonImage);
-  wasm.g_grayscale(photon_image.ptr);
-}
-
-/**
- * Convert an image to grayscale by setting a pixel's 3 RGB values to the Blue channel's value.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * # Example
- *
- * ```no_run
- * use photon_rs::monochrome::b_grayscale;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * b_grayscale(&mut img);
- * ```
- * @param {PhotonImage} photon_image
- */
-export function b_grayscale(photon_image) {
-  _assertClass(photon_image, PhotonImage);
-  wasm.b_grayscale(photon_image.ptr);
-}
-
-/**
- * Convert an image to grayscale by setting a pixel's 3 RGB values to a chosen channel's value.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `channel` - A usize representing the channel from 0 to 2. O represents the Red channel, 1 the Green channel, and 2 the Blue channel.
- * # Example
- * To grayscale using only values from the Red channel:
- * ```no_run
- * use photon_rs::monochrome::single_channel_grayscale;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * single_channel_grayscale(&mut img, 0_usize);
- * ```
- * @param {PhotonImage} photon_image
- * @param {number} channel
- */
-export function single_channel_grayscale(photon_image, channel) {
-  _assertClass(photon_image, PhotonImage);
-  wasm.single_channel_grayscale(photon_image.ptr, channel);
-}
-
-/**
- * Threshold an image using a standard thresholding algorithm.
- *
- * # Arguments
- * * `photon_image` - A PhotonImage.
- * * `threshold` - The amount the image should be thresholded by from 0 to 255.
- * # Example
- *
- * ```no_run
- * // For example, to threshold an image of type `PhotonImage`:
- * use photon_rs::monochrome::threshold;
- * use photon_rs::native::open_image;
- *
- * let mut img = open_image("img.jpg").expect("File should open");
- * threshold(&mut img, 30_u32);
- * ```
- * @param {PhotonImage} img
- * @param {number} threshold
- */
-export function threshold(img, threshold) {
-  _assertClass(img, PhotonImage);
-  wasm.threshold(img.ptr, threshold);
-}
-
-/**
  * Adds an offset to the image by a certain number of pixels.
  *
  * This creates an RGB shift effect.
@@ -3221,6 +2671,554 @@ export function obsidian(img) {
   wasm.obsidian(img.ptr);
 }
 
+/**
+ * Apply gamma correction.
+ * Image manipulation effects in the LCh colour space
+ *
+ * Effects include:
+ * * **saturate** - Saturation increase.
+ * * **desaturate** - Desaturate the image.
+ * * **shift_hue** - Hue rotation by a specified number of degrees.
+ * * **darken** - Decrease the brightness.
+ * * **lighten** - Increase the brightness.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `mode` - The effect desired to be applied. Choose from: `saturate`, `desaturate`, `shift_hue`, `darken`, `lighten`
+ * * `amt` - A float value from 0 to 1 which represents the amount the effect should be increased by.
+ * # Example
+ * ```no_run
+ * // For example to increase the saturation by 10%:
+ * use photon_rs::colour_spaces::lch;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * lch(&mut img, "saturate", 0.1_f32);
+ * ```
+ * @param {PhotonImage} photon_image
+ * @param {string} mode
+ * @param {number} amt
+ */
+export function lch(photon_image, mode, amt) {
+  _assertClass(photon_image, PhotonImage);
+  const ptr0 = passStringToWasm0(
+    mode,
+    wasm.__wbindgen_malloc,
+    wasm.__wbindgen_realloc,
+  );
+  const len0 = WASM_VECTOR_LEN;
+  wasm.lch(photon_image.ptr, ptr0, len0, amt);
+}
+
+/**
+ * Image manipulation effects in the HSL colour space.
+ *
+ * Effects include:
+ * * **saturate** - Saturation increase.
+ * * **desaturate** - Desaturate the image.
+ * * **shift_hue** - Hue rotation by a specified number of degrees.
+ * * **darken** - Decrease the brightness.
+ * * **lighten** - Increase the brightness.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `mode` - The effect desired to be applied. Choose from: `saturate`, `desaturate`, `shift_hue`, `darken`, `lighten`
+ * * `amt` - A float value from 0 to 1 which represents the amount the effect should be increased by.
+ * # Example
+ * ```no_run
+ * // For example to increase the saturation by 10%:
+ * use photon_rs::colour_spaces::hsl;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * hsl(&mut img, "saturate", 0.1_f32);
+ * ```
+ * @param {PhotonImage} photon_image
+ * @param {string} mode
+ * @param {number} amt
+ */
+export function hsl(photon_image, mode, amt) {
+  _assertClass(photon_image, PhotonImage);
+  const ptr0 = passStringToWasm0(
+    mode,
+    wasm.__wbindgen_malloc,
+    wasm.__wbindgen_realloc,
+  );
+  const len0 = WASM_VECTOR_LEN;
+  wasm.hsl(photon_image.ptr, ptr0, len0, amt);
+}
+
+/**
+ * Image manipulation in the HSV colour space.
+ *
+ * Effects include:
+ * * **saturate** - Saturation increase.
+ * * **desaturate** - Desaturate the image.
+ * * **shift_hue** - Hue rotation by a specified number of degrees.
+ * * **darken** - Decrease the brightness.
+ * * **lighten** - Increase the brightness.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage.
+ * * `mode` - The effect desired to be applied. Choose from: `saturate`, `desaturate`, `shift_hue`, `darken`, `lighten`
+ * * `amt` - A float value from 0 to 1 which represents the amount the effect should be increased by.
+ *
+ * # Example
+ * ```no_run
+ * // For example to increase the saturation by 10%:
+ * use photon_rs::colour_spaces::hsv;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * hsv(&mut img, "saturate", 0.1_f32);
+ * ```
+ * @param {PhotonImage} photon_image
+ * @param {string} mode
+ * @param {number} amt
+ */
+export function hsv(photon_image, mode, amt) {
+  _assertClass(photon_image, PhotonImage);
+  const ptr0 = passStringToWasm0(
+    mode,
+    wasm.__wbindgen_malloc,
+    wasm.__wbindgen_realloc,
+  );
+  const len0 = WASM_VECTOR_LEN;
+  wasm.hsv(photon_image.ptr, ptr0, len0, amt);
+}
+
+/**
+ * Shift hue by a specified number of degrees in the HSL colour space.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `mode` - A float value from 0 to 1 which is the amount to shift the hue by, or hue rotate by.
+ *
+ * # Example
+ * ```no_run
+ * // For example to hue rotate/shift the hue by 120 degrees in the HSL colour space:
+ * use photon_rs::colour_spaces::hue_rotate_hsl;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * hue_rotate_hsl(&mut img, 120_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} degrees
+ */
+export function hue_rotate_hsl(img, degrees) {
+  _assertClass(img, PhotonImage);
+  wasm.hue_rotate_hsl(img.ptr, degrees);
+}
+
+/**
+ * Shift hue by a specified number of degrees in the HSV colour space.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `mode` - A float value from 0 to 1 which is the amount to shift the hue by, or hue rotate by.
+ *
+ * # Example
+ * ```no_run
+ * // For example to hue rotate/shift the hue by 120 degrees in the HSV colour space:
+ * use photon_rs::colour_spaces::hue_rotate_hsv;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * hue_rotate_hsv(&mut img, 120_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} degrees
+ */
+export function hue_rotate_hsv(img, degrees) {
+  _assertClass(img, PhotonImage);
+  wasm.hue_rotate_hsv(img.ptr, degrees);
+}
+
+/**
+ * Shift hue by a specified number of degrees in the LCh colour space.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `mode` - A float value from 0 to 1 which is the amount to shift the hue by, or hue rotate by.
+ *
+ * # Example
+ * ```no_run
+ * // For example to hue rotate/shift the hue by 120 degrees in the HSL colour space:
+ * use photon_rs::colour_spaces::hue_rotate_lch;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * hue_rotate_lch(&mut img, 120_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} degrees
+ */
+export function hue_rotate_lch(img, degrees) {
+  _assertClass(img, PhotonImage);
+  wasm.hue_rotate_lch(img.ptr, degrees);
+}
+
+/**
+ * Increase the image's saturation by converting each pixel's colour to the HSL colour space
+ * and increasing the colour's saturation.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to increase the saturation by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Increasing saturation by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to increase saturation by 10% in the HSL colour space:
+ * use photon_rs::colour_spaces::saturate_hsl;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * saturate_hsl(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function saturate_hsl(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.saturate_hsl(img.ptr, level);
+}
+
+/**
+ * Increase the image's saturation in the LCh colour space.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to increase the saturation by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Increasing saturation by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to increase saturation by 40% in the Lch colour space:
+ * use photon_rs::colour_spaces::saturate_lch;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * saturate_lch(&mut img, 0.4_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function saturate_lch(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.saturate_lch(img.ptr, level);
+}
+
+/**
+ * Increase the image's saturation in the HSV colour space.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level by which to increase the saturation by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Increasing saturation by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to increase saturation by 30% in the HSV colour space:
+ * use photon_rs::colour_spaces::saturate_hsv;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * saturate_hsv(&mut img, 0.3_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function saturate_hsv(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.saturate_hsv(img.ptr, level);
+}
+
+/**
+ * Lighten an image by a specified amount in the LCh colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to lighten the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Lightening by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to lighten an image by 10% in the LCh colour space:
+ * use photon_rs::colour_spaces::lighten_lch;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * lighten_lch(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function lighten_lch(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.lighten_lch(img.ptr, level);
+}
+
+/**
+ * Lighten an image by a specified amount in the HSL colour space.
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to lighten the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Lightening by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to lighten an image by 10% in the HSL colour space:
+ * use photon_rs::colour_spaces::lighten_hsl;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * lighten_hsl(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function lighten_hsl(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.lighten_hsl(img.ptr, level);
+}
+
+/**
+ * Lighten an image by a specified amount in the HSV colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to lighten the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Lightening by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to lighten an image by 10% in the HSV colour space:
+ * use photon_rs::colour_spaces::lighten_hsv;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * lighten_hsv(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function lighten_hsv(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.lighten_hsv(img.ptr, level);
+}
+
+/**
+ * Darken the image by a specified amount in the LCh colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to darken the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Darkening by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to darken an image by 10% in the LCh colour space:
+ * use photon_rs::colour_spaces::darken_lch;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * darken_lch(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function darken_lch(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.darken_lch(img.ptr, level);
+}
+
+/**
+ * Darken the image by a specified amount in the HSL colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to darken the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Darkening by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to darken an image by 10% in the HSL colour space:
+ * use photon_rs::colour_spaces::darken_hsl;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * darken_hsl(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function darken_hsl(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.darken_hsl(img.ptr, level);
+}
+
+/**
+ * Darken the image's colours by a specified amount in the HSV colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to darken the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Darkening by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to darken an image by 10% in the HSV colour space:
+ * use photon_rs::colour_spaces::darken_hsv;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * darken_hsv(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function darken_hsv(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.darken_hsv(img.ptr, level);
+}
+
+/**
+ * Desaturate the image by a specified amount in the HSV colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to desaturate the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Desaturating by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to desaturate an image by 10% in the HSV colour space:
+ * use photon_rs::colour_spaces::desaturate_hsv;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * desaturate_hsv(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function desaturate_hsv(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.desaturate_hsv(img.ptr, level);
+}
+
+/**
+ * Desaturate the image by a specified amount in the HSL colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to desaturate the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Desaturating by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to desaturate an image by 10% in the LCh colour space:
+ * use photon_rs::colour_spaces::desaturate_hsl;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * desaturate_hsl(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function desaturate_hsl(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.desaturate_hsl(img.ptr, level);
+}
+
+/**
+ * Desaturate the image by a specified amount in the LCh colour space.
+ *
+ * # Arguments
+ * * `img` - A PhotonImage.
+ * * `level` - Float value from 0 to 1 representing the level to which to desaturate the image by.
+ * The `level` must be from 0 to 1 in floating-point, `f32` format.
+ * Desaturating by 80% would be represented by a `level` of 0.8
+ *
+ * # Example
+ * ```no_run
+ * // For example to desaturate an image by 10% in the LCh colour space:
+ * use photon_rs::colour_spaces::desaturate_lch;
+ * use photon_rs::native::open_image;
+ *
+ * // Open the image. A PhotonImage is returned.
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * desaturate_lch(&mut img, 0.1_f32);
+ * ```
+ * @param {PhotonImage} img
+ * @param {number} level
+ */
+export function desaturate_lch(img, level) {
+  _assertClass(img, PhotonImage);
+  wasm.desaturate_lch(img.ptr, level);
+}
+
+/**
+ * Mix image with a single color, supporting passing `opacity`.
+ * The algorithm comes from Jimp. See `function mix` and `function colorFn` at following link:
+ * https://github.com/oliver-moran/jimp/blob/29679faa597228ff2f20d34c5758e4d2257065a3/packages/plugin-color/src/index.js
+ * Specifically, result_value = (mix_color_value - origin_value) * opacity + origin_value =
+ * mix_color_value * opacity + (1 - opacity) * origin_value for each
+ * of RGB channel.
+ *
+ * # Arguments
+ * * `photon_image` - A PhotonImage that contains a view into the image.
+ * * `mix_color` - the color to be mixed in, as an RGB value.
+ * * `opacity` - the opacity of color when mixed to image. Float value from 0 to 1.
+ * # Example
+ *
+ * ```no_run
+ * // For example, to mix an image with rgb (50, 255, 254) and opacity 0.4:
+ * use photon_rs::Rgb;
+ * use photon_rs::colour_spaces::mix_with_colour;
+ * use photon_rs::native::open_image;
+ *
+ * let mix_colour = Rgb::new(50_u8, 255_u8, 254_u8);
+ * let mut img = open_image("img.jpg").expect("File should open");
+ * mix_with_colour(&mut img, mix_colour, 0.4_f32);
+ * ```
+ * @param {PhotonImage} photon_image
+ * @param {Rgb} mix_colour
+ * @param {number} opacity
+ */
+export function mix_with_colour(photon_image, mix_colour, opacity) {
+  _assertClass(photon_image, PhotonImage);
+  _assertClass(mix_colour, Rgb);
+  var ptr0 = mix_colour.ptr;
+  mix_colour.ptr = 0;
+  wasm.mix_with_colour(photon_image.ptr, ptr0, opacity);
+}
+
 function isLikeNone(x) {
   return x === undefined || x === null;
 }
@@ -3571,7 +3569,7 @@ export class Rgba {
 
 const imports = {
   __wbindgen_placeholder__: {
-    __wbg_log_bfd5ca3dda452d1d: function (arg0, arg1) {
+    __wbg_log_24f753292794b69a: function (arg0, arg1) {
       console.log(getStringFromWasm0(arg0, arg1));
     },
     __wbindgen_object_drop_ref: function (arg0) {
@@ -3825,7 +3823,7 @@ let lastLoadPromise;
  * @param {InstantiateOptions=} opts
  * @returns {Promise<{
  *   instance: WebAssembly.Instance;
- *   exports: { base64_placeholder: typeof base64_placeholder; run: typeof run; get_image_data: typeof get_image_data; putImageData: typeof putImageData; open_image: typeof open_image; to_raw_pixels: typeof to_raw_pixels; base64_to_image: typeof base64_to_image; base64_to_vec: typeof base64_to_vec; to_image_data: typeof to_image_data; lch: typeof lch; hsl: typeof hsl; hsv: typeof hsv; hue_rotate_hsl: typeof hue_rotate_hsl; hue_rotate_hsv: typeof hue_rotate_hsv; hue_rotate_lch: typeof hue_rotate_lch; saturate_hsl: typeof saturate_hsl; saturate_lch: typeof saturate_lch; saturate_hsv: typeof saturate_hsv; lighten_lch: typeof lighten_lch; lighten_hsl: typeof lighten_hsl; lighten_hsv: typeof lighten_hsv; darken_lch: typeof darken_lch; darken_hsl: typeof darken_hsl; darken_hsv: typeof darken_hsv; desaturate_hsv: typeof desaturate_hsv; desaturate_hsl: typeof desaturate_hsl; desaturate_lch: typeof desaturate_lch; mix_with_colour: typeof mix_with_colour; watermark: typeof watermark; blend: typeof blend; create_gradient: typeof create_gradient; apply_gradient: typeof apply_gradient; noise_reduction: typeof noise_reduction; sharpen: typeof sharpen; edge_detection: typeof edge_detection; identity: typeof identity; box_blur: typeof box_blur; gaussian_blur: typeof gaussian_blur; detect_horizontal_lines: typeof detect_horizontal_lines; detect_vertical_lines: typeof detect_vertical_lines; detect_45_deg_lines: typeof detect_45_deg_lines; detect_135_deg_lines: typeof detect_135_deg_lines; laplace: typeof laplace; edge_one: typeof edge_one; emboss: typeof emboss; sobel_horizontal: typeof sobel_horizontal; prewitt_horizontal: typeof prewitt_horizontal; sobel_vertical: typeof sobel_vertical; alter_channel: typeof alter_channel; alter_red_channel: typeof alter_red_channel; alter_green_channel: typeof alter_green_channel; alter_blue_channel: typeof alter_blue_channel; alter_two_channels: typeof alter_two_channels; alter_channels: typeof alter_channels; remove_channel: typeof remove_channel; remove_red_channel: typeof remove_red_channel; remove_green_channel: typeof remove_green_channel; remove_blue_channel: typeof remove_blue_channel; swap_channels: typeof swap_channels; invert: typeof invert; selective_hue_rotate: typeof selective_hue_rotate; selective_lighten: typeof selective_lighten; selective_desaturate: typeof selective_desaturate; selective_saturate: typeof selective_saturate; selective_greyscale: typeof selective_greyscale; crop: typeof crop; crop_img_browser: typeof crop_img_browser; fliph: typeof fliph; flipv: typeof flipv; resize_img_browser: typeof resize_img_browser; resize: typeof resize; seam_carve: typeof seam_carve; padding_uniform: typeof padding_uniform; padding_left: typeof padding_left; padding_right: typeof padding_right; padding_top: typeof padding_top; padding_bottom: typeof padding_bottom; monochrome: typeof monochrome; sepia: typeof sepia; grayscale: typeof grayscale; grayscale_human_corrected: typeof grayscale_human_corrected; desaturate: typeof desaturate; decompose_min: typeof decompose_min; decompose_max: typeof decompose_max; grayscale_shades: typeof grayscale_shades; r_grayscale: typeof r_grayscale; g_grayscale: typeof g_grayscale; b_grayscale: typeof b_grayscale; single_channel_grayscale: typeof single_channel_grayscale; threshold: typeof threshold; offset: typeof offset; offset_red: typeof offset_red; offset_green: typeof offset_green; offset_blue: typeof offset_blue; multiple_offsets: typeof multiple_offsets; primary: typeof primary; colorize: typeof colorize; solarize: typeof solarize; solarize_retimg: typeof solarize_retimg; inc_brightness: typeof inc_brightness; adjust_contrast: typeof adjust_contrast; tint: typeof tint; horizontal_strips: typeof horizontal_strips; color_horizontal_strips: typeof color_horizontal_strips; vertical_strips: typeof vertical_strips; color_vertical_strips: typeof color_vertical_strips; oil: typeof oil; frosted_glass: typeof frosted_glass; neue: typeof neue; lix: typeof lix; ryo: typeof ryo; filter: typeof filter; lofi: typeof lofi; pastel_pink: typeof pastel_pink; golden: typeof golden; cali: typeof cali; dramatic: typeof dramatic; firenze: typeof firenze; obsidian: typeof obsidian; PhotonImage : typeof PhotonImage ; Rgb : typeof Rgb ; Rgba : typeof Rgba  }
+ *   exports: { base64_placeholder: typeof base64_placeholder; run: typeof run; get_image_data: typeof get_image_data; putImageData: typeof putImageData; open_image: typeof open_image; to_raw_pixels: typeof to_raw_pixels; base64_to_image: typeof base64_to_image; base64_to_vec: typeof base64_to_vec; to_image_data: typeof to_image_data; watermark: typeof watermark; blend: typeof blend; create_gradient: typeof create_gradient; apply_gradient: typeof apply_gradient; noise_reduction: typeof noise_reduction; sharpen: typeof sharpen; edge_detection: typeof edge_detection; identity: typeof identity; box_blur: typeof box_blur; gaussian_blur: typeof gaussian_blur; detect_horizontal_lines: typeof detect_horizontal_lines; detect_vertical_lines: typeof detect_vertical_lines; detect_45_deg_lines: typeof detect_45_deg_lines; detect_135_deg_lines: typeof detect_135_deg_lines; laplace: typeof laplace; edge_one: typeof edge_one; emboss: typeof emboss; sobel_horizontal: typeof sobel_horizontal; prewitt_horizontal: typeof prewitt_horizontal; sobel_vertical: typeof sobel_vertical; monochrome: typeof monochrome; sepia: typeof sepia; grayscale: typeof grayscale; grayscale_human_corrected: typeof grayscale_human_corrected; desaturate: typeof desaturate; decompose_min: typeof decompose_min; decompose_max: typeof decompose_max; grayscale_shades: typeof grayscale_shades; r_grayscale: typeof r_grayscale; g_grayscale: typeof g_grayscale; b_grayscale: typeof b_grayscale; single_channel_grayscale: typeof single_channel_grayscale; threshold: typeof threshold; alter_channel: typeof alter_channel; alter_red_channel: typeof alter_red_channel; alter_green_channel: typeof alter_green_channel; alter_blue_channel: typeof alter_blue_channel; alter_two_channels: typeof alter_two_channels; alter_channels: typeof alter_channels; remove_channel: typeof remove_channel; remove_red_channel: typeof remove_red_channel; remove_green_channel: typeof remove_green_channel; remove_blue_channel: typeof remove_blue_channel; swap_channels: typeof swap_channels; invert: typeof invert; selective_hue_rotate: typeof selective_hue_rotate; selective_lighten: typeof selective_lighten; selective_desaturate: typeof selective_desaturate; selective_saturate: typeof selective_saturate; selective_greyscale: typeof selective_greyscale; crop: typeof crop; crop_img_browser: typeof crop_img_browser; fliph: typeof fliph; flipv: typeof flipv; resize_img_browser: typeof resize_img_browser; resize: typeof resize; seam_carve: typeof seam_carve; padding_uniform: typeof padding_uniform; padding_left: typeof padding_left; padding_right: typeof padding_right; padding_top: typeof padding_top; padding_bottom: typeof padding_bottom; offset: typeof offset; offset_red: typeof offset_red; offset_green: typeof offset_green; offset_blue: typeof offset_blue; multiple_offsets: typeof multiple_offsets; primary: typeof primary; colorize: typeof colorize; solarize: typeof solarize; solarize_retimg: typeof solarize_retimg; inc_brightness: typeof inc_brightness; adjust_contrast: typeof adjust_contrast; tint: typeof tint; horizontal_strips: typeof horizontal_strips; color_horizontal_strips: typeof color_horizontal_strips; vertical_strips: typeof vertical_strips; color_vertical_strips: typeof color_vertical_strips; oil: typeof oil; frosted_glass: typeof frosted_glass; neue: typeof neue; lix: typeof lix; ryo: typeof ryo; filter: typeof filter; lofi: typeof lofi; pastel_pink: typeof pastel_pink; golden: typeof golden; cali: typeof cali; dramatic: typeof dramatic; firenze: typeof firenze; obsidian: typeof obsidian; lch: typeof lch; hsl: typeof hsl; hsv: typeof hsv; hue_rotate_hsl: typeof hue_rotate_hsl; hue_rotate_hsv: typeof hue_rotate_hsv; hue_rotate_lch: typeof hue_rotate_lch; saturate_hsl: typeof saturate_hsl; saturate_lch: typeof saturate_lch; saturate_hsv: typeof saturate_hsv; lighten_lch: typeof lighten_lch; lighten_hsl: typeof lighten_hsl; lighten_hsv: typeof lighten_hsv; darken_lch: typeof darken_lch; darken_hsl: typeof darken_hsl; darken_hsv: typeof darken_hsv; desaturate_hsv: typeof desaturate_hsv; desaturate_hsl: typeof desaturate_hsl; desaturate_lch: typeof desaturate_lch; mix_with_colour: typeof mix_with_colour; PhotonImage : typeof PhotonImage ; Rgb : typeof Rgb ; Rgba : typeof Rgba  }
  * }>}
  */
 export function instantiateWithInstance(opts) {
@@ -3863,25 +3861,6 @@ function getWasmInstanceExports() {
     base64_to_image,
     base64_to_vec,
     to_image_data,
-    lch,
-    hsl,
-    hsv,
-    hue_rotate_hsl,
-    hue_rotate_hsv,
-    hue_rotate_lch,
-    saturate_hsl,
-    saturate_lch,
-    saturate_hsv,
-    lighten_lch,
-    lighten_hsl,
-    lighten_hsv,
-    darken_lch,
-    darken_hsl,
-    darken_hsv,
-    desaturate_hsv,
-    desaturate_hsl,
-    desaturate_lch,
-    mix_with_colour,
     watermark,
     blend,
     create_gradient,
@@ -3902,6 +3881,19 @@ function getWasmInstanceExports() {
     sobel_horizontal,
     prewitt_horizontal,
     sobel_vertical,
+    monochrome,
+    sepia,
+    grayscale,
+    grayscale_human_corrected,
+    desaturate,
+    decompose_min,
+    decompose_max,
+    grayscale_shades,
+    r_grayscale,
+    g_grayscale,
+    b_grayscale,
+    single_channel_grayscale,
+    threshold,
     alter_channel,
     alter_red_channel,
     alter_green_channel,
@@ -3931,19 +3923,6 @@ function getWasmInstanceExports() {
     padding_right,
     padding_top,
     padding_bottom,
-    monochrome,
-    sepia,
-    grayscale,
-    grayscale_human_corrected,
-    desaturate,
-    decompose_min,
-    decompose_max,
-    grayscale_shades,
-    r_grayscale,
-    g_grayscale,
-    b_grayscale,
-    single_channel_grayscale,
-    threshold,
     offset,
     offset_red,
     offset_green,
@@ -3973,6 +3952,25 @@ function getWasmInstanceExports() {
     dramatic,
     firenze,
     obsidian,
+    lch,
+    hsl,
+    hsv,
+    hue_rotate_hsl,
+    hue_rotate_hsv,
+    hue_rotate_lch,
+    saturate_hsl,
+    saturate_lch,
+    saturate_hsv,
+    lighten_lch,
+    lighten_hsl,
+    lighten_hsv,
+    darken_lch,
+    darken_hsl,
+    darken_hsv,
+    desaturate_hsv,
+    desaturate_hsl,
+    desaturate_lch,
+    mix_with_colour,
     PhotonImage,
     Rgb,
     Rgba,
