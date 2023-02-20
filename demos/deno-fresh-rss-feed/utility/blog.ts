@@ -1,4 +1,4 @@
-import { extract } from "$std/encoding/front_matter.ts";
+import { extract } from "$std/encoding/front_matter/yaml.ts";
 
 export interface PostMeta {
   slug: string;
@@ -6,6 +6,35 @@ export interface PostMeta {
   datePublished: string;
   seoMetaDescription: string;
   featuredImage: string;
+}
+
+export interface Post extends PostMeta {
+  content: string;
+}
+
+export async function loadPost(slug: string): Promise<Post | null> {
+  let text: string;
+  try {
+    text = await Deno.readTextFile(`./data/posts/${slug}/index.md`);
+  } catch (error: unknown) {
+    if (error instanceof Deno.errors.NotFound) {
+      return null;
+    }
+    console.error(`Error loading: ${error}`);
+    throw error;
+  }
+  const { attrs, body } = extract(text);
+  const { datePublished, featuredImage, seoMetaDescription, postTitle } =
+    attrs as Record<string, string>;
+
+  return {
+    content: body,
+    featuredImage,
+    postTitle,
+    datePublished,
+    seoMetaDescription,
+    slug,
+  };
 }
 
 export async function loadPostMeta(slug: string): Promise<PostMeta | null> {
