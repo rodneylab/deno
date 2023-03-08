@@ -1,0 +1,77 @@
+:root {
+  /* https://coolors.co/3f73d6-f8f553-9ec43c-d7f9ff-0e1c36 */
+  --colour-dark: hsl(219deg 59% 13%); /* blue zodiac */
+  --colour-light: hsl(189deg 100% 92%); /* oyster bay */
+  --colour-brand: hsl(59deg 92% 65%); /* candy corn */
+  --colour-theme: hsl(219deg 65% 54%); /* royal blue */
+  --colour-alt: hsl(77deg 54% 50%); /* sushi */
+
+  --spacing-4: 1rem;
+  --spacing-8: 2rem;
+  --spacing-16: 4rem;
+  --spacing-24: 6rem;
+
+  --max-width-full: 100%;
+  --max-width-wrapper: 48rem;
+
+  --font-size-3: 1.5626rem;
+  --font-size-7: 3.8147rem;
+  --font-size-13: 14.5519rem;
+
+  --font-weight-bold: 700;
+
+  --font-family-heading: Raleway;
+  --font-family-body: "Nunito Sans";
+}
+
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--colour-dark);
+  font-family: var(--font-family-body);
+}
+
+h1 {
+  margin: var(--spacing-4) auto var(--spacing-16);
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: min(100% - var(--spacing-16), var(--max-width-wrapper));
+  margin: var(--spacing-4) auto var(--spacing-8);
+  padding-block: var(--spacing-8);
+}
+.heading {
+  margin-bottom: var(--spacing-24);
+  text-align: center;
+  font-size: var(--font-size-13);
+
+  font-family: var(--font-family-heading);
+
+  background-color: var(--colour-alt);
+
+  /* CREDIT: https://www.joshwcomeau.com/gradient-generator/ */
+  background-image: linear-gradient(
+    45deg,
+    hsl(100deg 100% 33%) 0%,
+    hsl(91deg 100% 34%) 21%,
+    hsl(84deg 100% 35%) 30%,
+    hsl(78deg 100% 37%) 39%,
+    hsl(73deg 100% 38%) 46%,
+    hsl(68deg 100% 39%) 54%,
+    hsl(63deg 100% 40%) 61%,
+    hsl(59deg 100% 42%) 69%,
+    hsl(54deg 90% 48%) 79%,
+    hsl(50deg 100% 56%) 100%
+  );
+  color: var(--colour-dark);
+}
+
+.images {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
