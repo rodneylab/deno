@@ -1,8 +1,8 @@
 [package]
 name = "deno-matrix-element-bot"
 version = "0.0.1"
-edition = "2021"
 authors = ["Rodney Johnson <ask@rodneylab.com>"]
+edition = "2021"
 license = "BSD-3-Clause"
 repository = "https://github.com/rodneylab/deno/tree/main/demos/deno-fresh-rss-feed/deno-matrix-element-bot"
 description = "Matrix Element bot WASM Rust code"
