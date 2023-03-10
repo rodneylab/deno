@@ -14,7 +14,8 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/deno/tree/main/demos/deno-fresh-responsive-images)
 
 Code from Rodney Lab
-<a href="https://rodneylab.com/deno-fresh-responsive-images/">Deno Fresh Responsive Image blog post</a>. If you have any questions, please drop a comment
+<a href="https://rodneylab.com/deno-fresh-responsive-images/">Deno Fresh
+Responsive Image blog post</a>. If you have any questions, please drop a comment
 at the bottom of that page.
 
 # Deno Fresh Responsive Images

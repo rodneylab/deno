@@ -5,7 +5,7 @@ await instantiate();
 
 export const handler = async (
   request: Request,
-  context: HandlerContext
+  context: HandlerContext,
 ): Promise<Response> => {
   if (request.method === "GET") {
     const {
@@ -13,7 +13,7 @@ export const handler = async (
     } = context;
     // const { headers } = request;
     // console.log(headers.get("Accept")); // example: "image/avif,image/webp,*/*"
-    
+
     const { url } = request;
     const { searchParams } = new URL(url);
     const width = searchParams.get("w");
