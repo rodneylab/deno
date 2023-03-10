@@ -14,8 +14,9 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/deno/tree/main/demos/deno-fresh-postcss)
 
 Code from Rodney Lab
-<a aria-label="Deno Fresh Post C S S blog post" href="https://rodneylab.com/deno-fresh-postcss/">Deno Fresh PostCSS blog post</a>. If you have any questions, please drop a comment
-at the bottom of that page.
+<a aria-label="Deno Fresh Post C S S blog post" href="https://rodneylab.com/deno-fresh-postcss/">Deno
+Fresh PostCSS blog post</a>. If you have any questions, please drop a comment at
+the bottom of that page.
 
 # Deno Fresh PostCSS
 
