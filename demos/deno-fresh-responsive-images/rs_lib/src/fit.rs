@@ -71,7 +71,7 @@ pub fn output_dimensions(
       }
       (Some(width_value), None) => (
         width_value,
-        (input_aspect_ratio / f64::from(width_value)).round() as u32,
+        (f64::from(width_value) / input_aspect_ratio).round() as u32,
       ),
       (None, Some(height_value)) => (
         (input_aspect_ratio * f64::from(height_value)).round() as u32,
