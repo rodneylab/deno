@@ -1,10 +1,10 @@
 // @generated file from wasmbuild -- do not edit
 // deno-lint-ignore-file
 // deno-fmt-ignore-file
-// source-hash: ef987111a05d3e9f81f1678f34a5c565f00a69b1
+// source-hash: 7b113aa9356012f14eb7323d15e2e8e9befa4dfa
 let wasm;
 
-const heap = new Array(32).fill(undefined);
+const heap = new Array(128).fill(undefined);
 
 heap.push(undefined, null, true, false);
 
@@ -14,10 +14,10 @@ function getObject(idx) {
 
 let WASM_VECTOR_LEN = 0;
 
-let cachedUint8Memory0 = new Uint8Array();
+let cachedUint8Memory0 = null;
 
 function getUint8Memory0() {
-  if (cachedUint8Memory0.byteLength === 0) {
+  if (cachedUint8Memory0 === null || cachedUint8Memory0.byteLength === 0) {
     cachedUint8Memory0 = new Uint8Array(wasm.memory.buffer);
   }
   return cachedUint8Memory0;
@@ -70,10 +70,10 @@ function isLikeNone(x) {
   return x === undefined || x === null;
 }
 
-let cachedInt32Memory0 = new Int32Array();
+let cachedInt32Memory0 = null;
 
 function getInt32Memory0() {
-  if (cachedInt32Memory0.byteLength === 0) {
+  if (cachedInt32Memory0 === null || cachedInt32Memory0.byteLength === 0) {
     cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
   }
   return cachedInt32Memory0;
@@ -82,7 +82,7 @@ function getInt32Memory0() {
 let heap_next = heap.length;
 
 function dropObject(idx) {
-  if (idx < 36) return;
+  if (idx < 132) return;
   heap[idx] = heap_next;
   heap_next = idx;
 }
@@ -113,10 +113,10 @@ function addHeapObject(obj) {
   return idx;
 }
 
-let cachedFloat64Memory0 = new Float64Array();
+let cachedFloat64Memory0 = null;
 
 function getFloat64Memory0() {
-  if (cachedFloat64Memory0.byteLength === 0) {
+  if (cachedFloat64Memory0 === null || cachedFloat64Memory0.byteLength === 0) {
     cachedFloat64Memory0 = new Float64Array(wasm.memory.buffer);
   }
   return cachedFloat64Memory0;
@@ -224,6 +224,10 @@ const imports = {
     __wbindgen_object_drop_ref: function (arg0) {
       takeObject(arg0);
     },
+    __wbindgen_error_new: function (arg0, arg1) {
+      const ret = new Error(getStringFromWasm0(arg0, arg1));
+      return addHeapObject(ret);
+    },
     __wbindgen_is_object: function (arg0) {
       const val = getObject(arg0);
       const ret = typeof (val) === "object" && val !== null;
@@ -236,10 +240,6 @@ const imports = {
     __wbindgen_in: function (arg0, arg1) {
       const ret = getObject(arg0) in getObject(arg1);
       return ret;
-    },
-    __wbindgen_error_new: function (arg0, arg1) {
-      const ret = new Error(getStringFromWasm0(arg0, arg1));
-      return addHeapObject(ret);
     },
     __wbindgen_number_new: function (arg0) {
       const ret = arg0;
@@ -268,11 +268,11 @@ const imports = {
       getFloat64Memory0()[arg0 / 8 + 1] = isLikeNone(ret) ? 0 : ret;
       getInt32Memory0()[arg0 / 4 + 0] = !isLikeNone(ret);
     },
-    __wbg_getwithrefkey_15c62c2b8546208d: function (arg0, arg1) {
+    __wbg_getwithrefkey_5e6d9547403deab8: function (arg0, arg1) {
       const ret = getObject(arg0)[getObject(arg1)];
       return addHeapObject(ret);
     },
-    __wbg_set_20cbc34131e76824: function (arg0, arg1, arg2) {
+    __wbg_set_841ac57cff3d672b: function (arg0, arg1, arg2) {
       getObject(arg0)[takeObject(arg1)] = takeObject(arg2);
     },
     __wbg_new_1d9a920c6bfc44a8: function () {
