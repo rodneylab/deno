@@ -45,7 +45,7 @@ mod tests {
 
   #[test]
   fn test_base64_placeholder() {
-    // prepare
+    // arrange
     let path = Path::new("../content/dinosaur-lemon.png");
     let mut file = File::open(&path).expect("Error opening file for test");
     let mut bytes = Vec::new();
