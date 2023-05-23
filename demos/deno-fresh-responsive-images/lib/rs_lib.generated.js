@@ -1,7 +1,7 @@
 // @generated file from wasmbuild -- do not edit
 // deno-lint-ignore-file
 // deno-fmt-ignore-file
-// source-hash: 7b113aa9356012f14eb7323d15e2e8e9befa4dfa
+// source-hash: 32571b55f5c45e01b4decaf81a1f793e7e5ce11b
 let wasm;
 
 const cachedTextDecoder = new TextDecoder("utf-8", {
@@ -41,18 +41,6 @@ function addHeapObject(obj) {
 
 function getObject(idx) {
   return heap[idx];
-}
-
-function dropObject(idx) {
-  if (idx < 132) return;
-  heap[idx] = heap_next;
-  heap_next = idx;
-}
-
-function takeObject(idx) {
-  const ret = getObject(idx);
-  dropObject(idx);
-  return ret;
 }
 
 let WASM_VECTOR_LEN = 0;
@@ -111,6 +99,18 @@ function getInt32Memory0() {
     cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
   }
   return cachedInt32Memory0;
+}
+
+function dropObject(idx) {
+  if (idx < 132) return;
+  heap[idx] = heap_next;
+  heap_next = idx;
+}
+
+function takeObject(idx) {
+  const ret = getObject(idx);
+  dropObject(idx);
+  return ret;
 }
 
 let cachedFloat64Memory0 = null;
@@ -211,9 +211,6 @@ const imports = {
       const ret = new Error(getStringFromWasm0(arg0, arg1));
       return addHeapObject(ret);
     },
-    __wbindgen_object_drop_ref: function (arg0) {
-      takeObject(arg0);
-    },
     __wbindgen_string_get: function (arg0, arg1) {
       const obj = getObject(arg1);
       const ret = typeof (obj) === "string" ? obj : undefined;
@@ -227,6 +224,9 @@ const imports = {
       var len0 = WASM_VECTOR_LEN;
       getInt32Memory0()[arg0 / 4 + 1] = len0;
       getInt32Memory0()[arg0 / 4 + 0] = ptr0;
+    },
+    __wbindgen_object_drop_ref: function (arg0) {
+      takeObject(arg0);
     },
     __wbindgen_is_object: function (arg0) {
       const val = getObject(arg0);
