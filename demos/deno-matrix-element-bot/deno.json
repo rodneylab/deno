@@ -6,7 +6,7 @@
   },
   "imports": {
     "@/": "./",
-    "$std/": "https://deno.land/std@0.187.0/",
+    "$std/": "https://deno.land/std@0.190.0/",
     "js-temporal/": "https://cdn.skypack.dev/@js-temporal/"
   }
 }
