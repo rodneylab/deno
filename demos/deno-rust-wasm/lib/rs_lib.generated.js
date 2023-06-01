@@ -3776,6 +3776,13 @@ const imports = {
   },
 };
 
+import { Loader } from "https://deno.land/x/wasmbuild@0.13.0/loader.ts";
+import { cacheToLocalDir } from "https://deno.land/x/wasmbuild@0.13.0/cache.ts";
+
+const loader = new Loader({
+  imports,
+  cache: cacheToLocalDir,
+});
 /**
  * Decompression callback
  *
@@ -3801,9 +3808,6 @@ export async function instantiate(opts) {
   return (await instantiateWithInstance(opts)).exports;
 }
 
-let instanceWithExports;
-let lastLoadPromise;
-
 /** Instantiates an instance of the Wasm module along with its exports.
  * @remarks It is safe to call this multiple times and once successfully
  * loaded it will always return a reference to the same object.
@@ -3813,28 +3817,18 @@ let lastLoadPromise;
  *   exports: { base64_placeholder: typeof base64_placeholder; run: typeof run; get_image_data: typeof get_image_data; putImageData: typeof putImageData; open_image: typeof open_image; to_raw_pixels: typeof to_raw_pixels; base64_to_image: typeof base64_to_image; base64_to_vec: typeof base64_to_vec; to_image_data: typeof to_image_data; noise_reduction: typeof noise_reduction; sharpen: typeof sharpen; edge_detection: typeof edge_detection; identity: typeof identity; box_blur: typeof box_blur; gaussian_blur: typeof gaussian_blur; detect_horizontal_lines: typeof detect_horizontal_lines; detect_vertical_lines: typeof detect_vertical_lines; detect_45_deg_lines: typeof detect_45_deg_lines; detect_135_deg_lines: typeof detect_135_deg_lines; laplace: typeof laplace; edge_one: typeof edge_one; emboss: typeof emboss; sobel_horizontal: typeof sobel_horizontal; prewitt_horizontal: typeof prewitt_horizontal; sobel_vertical: typeof sobel_vertical; neue: typeof neue; lix: typeof lix; ryo: typeof ryo; filter: typeof filter; lofi: typeof lofi; pastel_pink: typeof pastel_pink; golden: typeof golden; cali: typeof cali; dramatic: typeof dramatic; firenze: typeof firenze; obsidian: typeof obsidian; crop: typeof crop; crop_img_browser: typeof crop_img_browser; fliph: typeof fliph; flipv: typeof flipv; resize_img_browser: typeof resize_img_browser; resize: typeof resize; seam_carve: typeof seam_carve; padding_uniform: typeof padding_uniform; padding_left: typeof padding_left; padding_right: typeof padding_right; padding_top: typeof padding_top; padding_bottom: typeof padding_bottom; alter_channel: typeof alter_channel; alter_red_channel: typeof alter_red_channel; alter_green_channel: typeof alter_green_channel; alter_blue_channel: typeof alter_blue_channel; alter_two_channels: typeof alter_two_channels; alter_channels: typeof alter_channels; remove_channel: typeof remove_channel; remove_red_channel: typeof remove_red_channel; remove_green_channel: typeof remove_green_channel; remove_blue_channel: typeof remove_blue_channel; swap_channels: typeof swap_channels; invert: typeof invert; selective_hue_rotate: typeof selective_hue_rotate; selective_lighten: typeof selective_lighten; selective_desaturate: typeof selective_desaturate; selective_saturate: typeof selective_saturate; selective_greyscale: typeof selective_greyscale; monochrome: typeof monochrome; sepia: typeof sepia; grayscale: typeof grayscale; grayscale_human_corrected: typeof grayscale_human_corrected; desaturate: typeof desaturate; decompose_min: typeof decompose_min; decompose_max: typeof decompose_max; grayscale_shades: typeof grayscale_shades; r_grayscale: typeof r_grayscale; g_grayscale: typeof g_grayscale; b_grayscale: typeof b_grayscale; single_channel_grayscale: typeof single_channel_grayscale; threshold: typeof threshold; watermark: typeof watermark; blend: typeof blend; create_gradient: typeof create_gradient; apply_gradient: typeof apply_gradient; offset: typeof offset; offset_red: typeof offset_red; offset_green: typeof offset_green; offset_blue: typeof offset_blue; multiple_offsets: typeof multiple_offsets; primary: typeof primary; colorize: typeof colorize; solarize: typeof solarize; solarize_retimg: typeof solarize_retimg; inc_brightness: typeof inc_brightness; adjust_contrast: typeof adjust_contrast; tint: typeof tint; horizontal_strips: typeof horizontal_strips; color_horizontal_strips: typeof color_horizontal_strips; vertical_strips: typeof vertical_strips; color_vertical_strips: typeof color_vertical_strips; oil: typeof oil; frosted_glass: typeof frosted_glass; lch: typeof lch; hsl: typeof hsl; hsv: typeof hsv; hue_rotate_hsl: typeof hue_rotate_hsl; hue_rotate_hsv: typeof hue_rotate_hsv; hue_rotate_lch: typeof hue_rotate_lch; saturate_hsl: typeof saturate_hsl; saturate_lch: typeof saturate_lch; saturate_hsv: typeof saturate_hsv; lighten_lch: typeof lighten_lch; lighten_hsl: typeof lighten_hsl; lighten_hsv: typeof lighten_hsv; darken_lch: typeof darken_lch; darken_hsl: typeof darken_hsl; darken_hsv: typeof darken_hsv; desaturate_hsv: typeof desaturate_hsv; desaturate_hsl: typeof desaturate_hsl; desaturate_lch: typeof desaturate_lch; mix_with_colour: typeof mix_with_colour; PhotonImage : typeof PhotonImage ; Rgb : typeof Rgb ; Rgba : typeof Rgba  }
  * }>}
  */
-export function instantiateWithInstance(opts) {
-  if (instanceWithExports != null) {
-    return Promise.resolve(instanceWithExports);
-  }
-  if (lastLoadPromise == null) {
-    lastLoadPromise = (async () => {
-      try {
-        const instance = (await instantiateModule(opts ?? {})).instance;
-        wasm = instance.exports;
-        cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
-        cachedUint8Memory0 = new Uint8Array(wasm.memory.buffer);
-        instanceWithExports = {
-          instance,
-          exports: getWasmInstanceExports(),
-        };
-        return instanceWithExports;
-      } finally {
-        lastLoadPromise = null;
-      }
-    })();
-  }
-  return lastLoadPromise;
+export async function instantiateWithInstance(opts) {
+  const { instance } = await loader.load(
+    opts?.url ?? new URL("rs_lib_bg.wasm", import.meta.url),
+    opts?.decompress,
+  );
+  wasm = wasm ?? instance.exports;
+  cachedInt32Memory0 = cachedInt32Memory0 ?? new Int32Array(wasm.memory.buffer);
+  cachedUint8Memory0 = cachedUint8Memory0 ?? new Uint8Array(wasm.memory.buffer);
+  return {
+    instance,
+    exports: getWasmInstanceExports(),
+  };
 }
 
 function getWasmInstanceExports() {
@@ -3966,61 +3960,5 @@ function getWasmInstanceExports() {
 
 /** Gets if the Wasm module has been instantiated. */
 export function isInstantiated() {
-  return instanceWithExports != null;
-}
-
-/**
- * @param {InstantiateOptions} opts
- */
-async function instantiateModule(opts) {
-  const wasmUrl = opts.url ?? new URL("rs_lib_bg.wasm", import.meta.url);
-  const decompress = opts.decompress;
-  const isFile = wasmUrl.protocol === "file:";
-
-  // make file urls work in Node via dnt
-  const isNode = globalThis.process?.versions?.node != null;
-  if (isNode && isFile) {
-    // the deno global will be shimmed by dnt
-    const wasmCode = await Deno.readFile(wasmUrl);
-    return WebAssembly.instantiate(
-      decompress ? decompress(wasmCode) : wasmCode,
-      imports,
-    );
-  }
-
-  switch (wasmUrl.protocol) {
-    case "file:":
-    case "https:":
-    case "http:": {
-      if (isFile) {
-        if (typeof Deno !== "object") {
-          throw new Error("file urls are not supported in this environment");
-        }
-        if ("permissions" in Deno) {
-          await Deno.permissions.request({ name: "read", path: wasmUrl });
-        }
-      } else if (typeof Deno === "object" && "permissions" in Deno) {
-        await Deno.permissions.request({ name: "net", host: wasmUrl.host });
-      }
-      const wasmResponse = await fetch(wasmUrl);
-      if (decompress) {
-        const wasmCode = new Uint8Array(await wasmResponse.arrayBuffer());
-        return WebAssembly.instantiate(decompress(wasmCode), imports);
-      }
-      if (
-        isFile ||
-        wasmResponse.headers.get("content-type")?.toLowerCase()
-          .startsWith("application/wasm")
-      ) {
-        return WebAssembly.instantiateStreaming(wasmResponse, imports);
-      } else {
-        return WebAssembly.instantiate(
-          await wasmResponse.arrayBuffer(),
-          imports,
-        );
-      }
-    }
-    default:
-      throw new Error(`Unsupported protocol: ${wasmUrl.protocol}`);
-  }
+  return loader.instance != null;
 }
