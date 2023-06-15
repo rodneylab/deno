@@ -18,5 +18,5 @@ opt-level = "z"
 
 [dependencies]
 matrix-sdk = { version = "0.6", default-features = false, features = ["e2e-encryption", "js", "native-tls"] }
-wasm-bindgen = "=0.2.84"
-wasm-bindgen-futures = "=0.4.34"
+wasm-bindgen = "=0.2.86"
+wasm-bindgen-futures = "=0.4.36"
