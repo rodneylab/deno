@@ -1,15 +1,18 @@
 // @generated file from wasmbuild -- do not edit
 // deno-lint-ignore-file
 // deno-fmt-ignore-file
-// source-hash: 32571b55f5c45e01b4decaf81a1f793e7e5ce11b
+// source-hash: dac1004a8dcf406f96676fed7cc0152a19438b4e
 let wasm;
 
-const cachedTextDecoder = new TextDecoder("utf-8", {
-  ignoreBOM: true,
-  fatal: true,
-});
+const heap = new Array(128).fill(undefined);
 
-cachedTextDecoder.decode();
+heap.push(undefined, null, true, false);
+
+function getObject(idx) {
+  return heap[idx];
+}
+
+let WASM_VECTOR_LEN = 0;
 
 let cachedUint8Memory0 = null;
 
@@ -20,32 +23,13 @@ function getUint8Memory0() {
   return cachedUint8Memory0;
 }
 
-function getStringFromWasm0(ptr, len) {
-  return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
-}
-
-const heap = new Array(128).fill(undefined);
-
-heap.push(undefined, null, true, false);
-
-let heap_next = heap.length;
-
-function addHeapObject(obj) {
-  if (heap_next === heap.length) heap.push(heap.length + 1);
-  const idx = heap_next;
-  heap_next = heap[idx];
-
-  heap[idx] = obj;
-  return idx;
-}
-
-function getObject(idx) {
-  return heap[idx];
-}
-
-let WASM_VECTOR_LEN = 0;
-
-const cachedTextEncoder = new TextEncoder("utf-8");
+const cachedTextEncoder = typeof TextEncoder !== "undefined"
+  ? new TextEncoder("utf-8")
+  : {
+    encode: () => {
+      throw Error("TextEncoder not available");
+    },
+  };
 
 const encodeString = function (arg, view) {
   return cachedTextEncoder.encodeInto(arg, view);
@@ -54,14 +38,14 @@ const encodeString = function (arg, view) {
 function passStringToWasm0(arg, malloc, realloc) {
   if (realloc === undefined) {
     const buf = cachedTextEncoder.encode(arg);
-    const ptr = malloc(buf.length);
+    const ptr = malloc(buf.length) >>> 0;
     getUint8Memory0().subarray(ptr, ptr + buf.length).set(buf);
     WASM_VECTOR_LEN = buf.length;
     return ptr;
   }
 
   let len = arg.length;
-  let ptr = malloc(len);
+  let ptr = malloc(len) >>> 0;
 
   const mem = getUint8Memory0();
 
@@ -77,7 +61,7 @@ function passStringToWasm0(arg, malloc, realloc) {
     if (offset !== 0) {
       arg = arg.slice(offset);
     }
-    ptr = realloc(ptr, len, len = offset + arg.length * 3);
+    ptr = realloc(ptr, len, len = offset + arg.length * 3) >>> 0;
     const view = getUint8Memory0().subarray(ptr + offset, ptr + len);
     const ret = encodeString(arg, view);
 
@@ -101,6 +85,8 @@ function getInt32Memory0() {
   return cachedInt32Memory0;
 }
 
+let heap_next = heap.length;
+
 function dropObject(idx) {
   if (idx < 132) return;
   heap[idx] = heap_next;
@@ -111,6 +97,30 @@ function takeObject(idx) {
   const ret = getObject(idx);
   dropObject(idx);
   return ret;
+}
+
+const cachedTextDecoder = typeof TextDecoder !== "undefined"
+  ? new TextDecoder("utf-8", { ignoreBOM: true, fatal: true })
+  : {
+    decode: () => {
+      throw Error("TextDecoder not available");
+    },
+  };
+
+if (typeof TextDecoder !== "undefined") cachedTextDecoder.decode();
+
+function getStringFromWasm0(ptr, len) {
+  ptr = ptr >>> 0;
+  return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
+}
+
+function addHeapObject(obj) {
+  if (heap_next === heap.length) heap.push(heap.length + 1);
+  const idx = heap_next;
+  heap_next = heap[idx];
+
+  heap[idx] = obj;
+  return idx;
 }
 
 let cachedFloat64Memory0 = null;
@@ -188,7 +198,7 @@ function debugString(val) {
 }
 
 function passArray8ToWasm0(arg, malloc) {
-  const ptr = malloc(arg.length * 1);
+  const ptr = malloc(arg.length * 1) >>> 0;
   getUint8Memory0().set(arg, ptr / 1);
   WASM_VECTOR_LEN = arg.length;
   return ptr;
@@ -207,23 +217,19 @@ export function resize_image(image_bytes, options) {
 
 const imports = {
   __wbindgen_placeholder__: {
-    __wbindgen_error_new: function (arg0, arg1) {
-      const ret = new Error(getStringFromWasm0(arg0, arg1));
-      return addHeapObject(ret);
-    },
     __wbindgen_string_get: function (arg0, arg1) {
       const obj = getObject(arg1);
       const ret = typeof (obj) === "string" ? obj : undefined;
-      var ptr0 = isLikeNone(ret)
+      var ptr1 = isLikeNone(ret)
         ? 0
         : passStringToWasm0(
           ret,
           wasm.__wbindgen_malloc,
           wasm.__wbindgen_realloc,
         );
-      var len0 = WASM_VECTOR_LEN;
-      getInt32Memory0()[arg0 / 4 + 1] = len0;
-      getInt32Memory0()[arg0 / 4 + 0] = ptr0;
+      var len1 = WASM_VECTOR_LEN;
+      getInt32Memory0()[arg0 / 4 + 1] = len1;
+      getInt32Memory0()[arg0 / 4 + 0] = ptr1;
     },
     __wbindgen_object_drop_ref: function (arg0) {
       takeObject(arg0);
@@ -241,6 +247,10 @@ const imports = {
       const ret = getObject(arg0) in getObject(arg1);
       return ret;
     },
+    __wbindgen_error_new: function (arg0, arg1) {
+      const ret = new Error(getStringFromWasm0(arg0, arg1));
+      return addHeapObject(ret);
+    },
     __wbindgen_number_new: function (arg0) {
       const ret = arg0;
       return addHeapObject(ret);
@@ -249,13 +259,13 @@ const imports = {
       const ret = getObject(arg0);
       return addHeapObject(ret);
     },
-    __wbindgen_string_new: function (arg0, arg1) {
-      const ret = getStringFromWasm0(arg0, arg1);
-      return addHeapObject(ret);
-    },
     __wbindgen_jsval_loose_eq: function (arg0, arg1) {
       const ret = getObject(arg0) == getObject(arg1);
       return ret;
+    },
+    __wbindgen_string_new: function (arg0, arg1) {
+      const ret = getStringFromWasm0(arg0, arg1);
+      return addHeapObject(ret);
     },
     __wbindgen_boolean_get: function (arg0) {
       const v = getObject(arg0);
@@ -327,14 +337,14 @@ const imports = {
     },
     __wbindgen_debug_string: function (arg0, arg1) {
       const ret = debugString(getObject(arg1));
-      const ptr0 = passStringToWasm0(
+      const ptr1 = passStringToWasm0(
         ret,
         wasm.__wbindgen_malloc,
         wasm.__wbindgen_realloc,
       );
-      const len0 = WASM_VECTOR_LEN;
-      getInt32Memory0()[arg0 / 4 + 1] = len0;
-      getInt32Memory0()[arg0 / 4 + 0] = ptr0;
+      const len1 = WASM_VECTOR_LEN;
+      getInt32Memory0()[arg0 / 4 + 1] = len1;
+      getInt32Memory0()[arg0 / 4 + 0] = ptr1;
     },
     __wbindgen_throw: function (arg0, arg1) {
       throw new Error(getStringFromWasm0(arg0, arg1));
@@ -346,6 +356,13 @@ const imports = {
   },
 };
 
+import { Loader } from "https://deno.land/x/wasmbuild@0.14.1/loader.ts";
+import { cacheToLocalDir } from "https://deno.land/x/wasmbuild@0.14.1/cache.ts";
+
+const loader = new Loader({
+  imports,
+  cache: cacheToLocalDir,
+});
 /**
  * Decompression callback
  *
@@ -371,9 +388,6 @@ export async function instantiate(opts) {
   return (await instantiateWithInstance(opts)).exports;
 }
 
-let instanceWithExports;
-let lastLoadPromise;
-
 /** Instantiates an instance of the Wasm module along with its exports.
  * @remarks It is safe to call this multiple times and once successfully
  * loaded it will always return a reference to the same object.
@@ -383,28 +397,18 @@ let lastLoadPromise;
  *   exports: { resize_image: typeof resize_image }
  * }>}
  */
-export function instantiateWithInstance(opts) {
-  if (instanceWithExports != null) {
-    return Promise.resolve(instanceWithExports);
-  }
-  if (lastLoadPromise == null) {
-    lastLoadPromise = (async () => {
-      try {
-        const instance = (await instantiateModule(opts ?? {})).instance;
-        wasm = instance.exports;
-        cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
-        cachedUint8Memory0 = new Uint8Array(wasm.memory.buffer);
-        instanceWithExports = {
-          instance,
-          exports: getWasmInstanceExports(),
-        };
-        return instanceWithExports;
-      } finally {
-        lastLoadPromise = null;
-      }
-    })();
-  }
-  return lastLoadPromise;
+export async function instantiateWithInstance(opts) {
+  const { instance } = await loader.load(
+    opts?.url ?? new URL("rs_lib_bg.wasm", import.meta.url),
+    opts?.decompress,
+  );
+  wasm = wasm ?? instance.exports;
+  cachedInt32Memory0 = cachedInt32Memory0 ?? new Int32Array(wasm.memory.buffer);
+  cachedUint8Memory0 = cachedUint8Memory0 ?? new Uint8Array(wasm.memory.buffer);
+  return {
+    instance,
+    exports: getWasmInstanceExports(),
+  };
 }
 
 function getWasmInstanceExports() {
@@ -413,61 +417,5 @@ function getWasmInstanceExports() {
 
 /** Gets if the Wasm module has been instantiated. */
 export function isInstantiated() {
-  return instanceWithExports != null;
-}
-
-/**
- * @param {InstantiateOptions} opts
- */
-async function instantiateModule(opts) {
-  const wasmUrl = opts.url ?? new URL("rs_lib_bg.wasm", import.meta.url);
-  const decompress = opts.decompress;
-  const isFile = wasmUrl.protocol === "file:";
-
-  // make file urls work in Node via dnt
-  const isNode = globalThis.process?.versions?.node != null;
-  if (isNode && isFile) {
-    // the deno global will be shimmed by dnt
-    const wasmCode = await Deno.readFile(wasmUrl);
-    return WebAssembly.instantiate(
-      decompress ? decompress(wasmCode) : wasmCode,
-      imports,
-    );
-  }
-
-  switch (wasmUrl.protocol) {
-    case "file:":
-    case "https:":
-    case "http:": {
-      if (isFile) {
-        if (typeof Deno !== "object") {
-          throw new Error("file urls are not supported in this environment");
-        }
-        if ("permissions" in Deno) {
-          await Deno.permissions.request({ name: "read", path: wasmUrl });
-        }
-      } else if (typeof Deno === "object" && "permissions" in Deno) {
-        await Deno.permissions.request({ name: "net", host: wasmUrl.host });
-      }
-      const wasmResponse = await fetch(wasmUrl);
-      if (decompress) {
-        const wasmCode = new Uint8Array(await wasmResponse.arrayBuffer());
-        return WebAssembly.instantiate(decompress(wasmCode), imports);
-      }
-      if (
-        isFile ||
-        wasmResponse.headers.get("content-type")?.toLowerCase()
-          .startsWith("application/wasm")
-      ) {
-        return WebAssembly.instantiateStreaming(wasmResponse, imports);
-      } else {
-        return WebAssembly.instantiate(
-          await wasmResponse.arrayBuffer(),
-          imports,
-        );
-      }
-    }
-    default:
-      throw new Error(`Unsupported protocol: ${wasmUrl.protocol}`);
-  }
+  return loader.instance != null;
 }
