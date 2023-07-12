@@ -1,0 +1,112 @@
+:root {
+  --colour-dark: hsl(242deg 94% 7%); /* xiketic */
+  --colour-light: hsl(260deg 43% 97%); /* white lilac */
+  --colour-brand: hsl(50deg 100% 56%); /* candlelight */
+  --colour-theme: hsl(204deg 69% 50%); /* curious blue */
+  --colour-alt: hsl(100deg 100% 33%); /* limeade */
+
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-4: 1rem;
+  --spacing-8: 2rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  --max-width-full: 100%;
+  --max-width-wrapper: 48rem;
+
+  --font-size-3: 1.5626rem;
+  --font-size-7: 3.8147rem;
+  --font-size-13: 14.5519rem;
+
+  --font-weight-bold: 700;
+
+  --font-family-heading: Raleway;
+  --font-family-body: "Nunito Sans";
+}
+
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--colour-dark);
+  font-family: var(--font-family-body);
+}
+
+h1 {
+  margin-block-end: var(--spacing-20);
+}
+.wrapper {
+  width: min(100% - var(--spacing-16), var(--max-width-wrapper));
+  margin: var(--spacing-4) auto var(--spacing-32);
+  padding-block: var(--spacing-20);
+}
+
+.heading {
+  margin-block-end: var(--spacing-24);
+  text-align: center;
+  font-size: var(--font-size-13);
+
+  font-family: var(--font-family-heading);
+
+  background-color: var(--colour-alt);
+
+  /* CREDIT: https://www.joshwcomeau.com/gradient-generator/ */
+  background-image: linear-gradient(
+    45deg,
+    hsl(100deg 100% 33%) 0%,
+    hsl(91deg 100% 34%) 21%,
+    hsl(84deg 100% 35%) 30%,
+    hsl(78deg 100% 37%) 39%,
+    hsl(73deg 100% 38%) 46%,
+    hsl(68deg 100% 39%) 54%,
+    hsl(63deg 100% 40%) 61%,
+    hsl(59deg 100% 42%) 69%,
+    hsl(54deg 90% 48%) 79%,
+    hsl(50deg 100% 56%) 100%
+  );
+  color: var(--colour-dark);
+}
+
+.banner-image-wrapper {
+  background-size: cover;
+  background-image: url("data:image/jpeg;base64,/9j/2wBDAAwREhMUFBUUFBofGhUaHiIcGhohKC4jJB4hMzg/PTouKC5CRFpMPi5XRTc3VmBRVlpgZmRkQklveXFmeFtlaWf/2wBDAQgMDQwNDw8PDxFgEBIaVmBaYFpgY2NjY2BjYGBiY2NjY2NjY2NjY2NjY2JjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAFAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAFQEBAQAAAAAAAAAAAAAAAAAABQf/2gAMAwEAAhADEAAAANjROXf/xAAXEAADAQAAAAAAAAAAAAAAAAAAARES/9oACAEBAAE/AKzTP//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8Af//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPwCI/9k=");
+  width: var(--max-width-wrapper);
+  margin: var(--spacing-4) auto;
+}
+
+.feature {
+  display: flex;
+  margin-block: var(--spacing-32);
+  text-align: center;
+  justify-content: space-around;
+}
+
+img {
+  max-width: var(--max-width-full);
+  height: auto;
+}
+
+figcaption {
+  background-color: var(--colour-theme);
+  color: var(--colour-dark);
+  font-size: var(--font-size-3);
+  padding: var(--spacing-2);
+  font-weight: var(--font-weight-bold);
+}
+
+.image-caption {
+  background-color: var(--colour-alt);
+  font-size: 1.25rem;
+  padding: var(--spacing-1) var(--spacing-4);
+  text-align: right;
+}
+
+.image-caption a {
+  color: var(--colour-dark);
+}
