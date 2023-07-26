@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "@/": "./",
+    "$std/": "https://deno.land/std@0.195.0/",
+    "js-temporal/": "https://esm.sh/@js-temporal/polyfill@0.4.3/"
+  },
+  "tasks": {
+    "start": "deno run --allow-env --allow-net --allow-read --watch=utils/,main.ts main.ts",
+    "test": "deno test --allow-env --allow-read --allow-net --allow-run --allow-write dev.ts"
+  }
+}
