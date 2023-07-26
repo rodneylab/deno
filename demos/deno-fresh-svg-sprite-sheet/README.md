@@ -14,9 +14,10 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/deno/tree/main/demos/deno-fresh-svg-sprite-sheet)
 
 Code from Rodney Lab
-<a href="https://rodneylab.com/deno-fresh-svg-sprites/">Deno Fresh SVG sprites post where we
-see how you can improve page performance by placing SVG icons on a static sprite sheet</a>. If you have
-any questions, please drop a comment at the bottom of that page.
+<a href="https://rodneylab.com/deno-fresh-svg-sprites/">Deno Fresh SVG sprites
+post where we see how you can improve page performance by placing SVG icons on a
+static sprite sheet</a>. If you have any questions, please drop a comment at the
+bottom of that page.
 
 # Deno Fresh Testing
 
