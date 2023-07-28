@@ -1,6 +1,6 @@
 import { createHandler } from "$fresh/server.ts";
+import type { ServeHandlerInfo } from "$fresh/server.ts";
 import { load } from "$std/dotenv/mod.ts";
-import type { ConnInfo } from "$std/http/server.ts";
 import { assertEquals, assertStringIncludes } from "$std/testing/asserts.ts";
 import { startOptions } from "@/configuration/configuration.ts";
 import manifest from "@/fresh.gen.ts";
@@ -10,8 +10,7 @@ await load({ envPath: ".env.test", export: true });
 
 const url = "http://127.0.0.1:8000/";
 
-const CONN_INFO: ConnInfo = {
-  localAddr: { hostname: "127.0.0.1", port: 8000, transport: "tcp" },
+const CONN_INFO: ServeHandlerInfo = {
   remoteAddr: { hostname: "127.0.0.1", port: 53496, transport: "tcp" },
 };
 
@@ -28,7 +27,7 @@ Deno.test("Home route", async (t) => {
     const response = await handler(new Request(url), CONN_INFO);
 
     const body = await response.text();
-    assertStringIncludes(body, `<html lang="en-GB">`);
+    assertStringIncludes(body, `<html lang="en-GB">`, 'Did not find HTML tag with expected lang attribute set');
   });
 
   await t.step("images have alt attribute", async () => {
