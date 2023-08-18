@@ -8,10 +8,6 @@ import "$std/dotenv/load.ts";
 
 import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
+import config from "./fresh.config.ts";
 
-await start(manifest, {
-  render: (ctx, render) => {
-    ctx.lang = "en-GB";
-    render();
-  },
-});
+await start(manifest, config);
