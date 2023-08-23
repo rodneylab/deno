@@ -1,8 +1,8 @@
-import { createHandler } from "$fresh/server.ts";
 import type { ServeHandlerInfo } from "$fresh/server.ts";
+import { createHandler } from "$fresh/server.ts";
 import { load } from "$std/dotenv/mod.ts";
 import { assertEquals, assertStringIncludes } from "$std/testing/asserts.ts";
-import { startOptions } from "@/configuration/configuration.ts";
+import config from "@/fresh.config.ts";
 import manifest from "@/fresh.gen.ts";
 import { DOMParser } from "deno-dom/deno-dom-wasm.ts";
 
@@ -15,7 +15,7 @@ const CONN_INFO: ServeHandlerInfo = {
 };
 
 Deno.test("Home route", async (t) => {
-  const handler = await createHandler(manifest, startOptions);
+  const handler = await createHandler(manifest, config);
 
   await t.step("it returns a 200 status code", async () => {
     const response = await handler(new Request(url), CONN_INFO);

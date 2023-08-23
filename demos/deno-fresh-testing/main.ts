@@ -6,7 +6,7 @@
 
 import { start } from "$fresh/server.ts";
 import "$std/dotenv/load.ts";
-import { startOptions } from "@/configuration/configuration.ts";
 import manifest from "@/fresh.gen.ts";
+import config from "@/fresh.config.ts";
 
-await start(manifest, startOptions);
+await start(manifest, config);

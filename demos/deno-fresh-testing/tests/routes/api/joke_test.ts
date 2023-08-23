@@ -2,8 +2,8 @@ import type { ServeHandlerInfo } from "$fresh/server.ts";
 import { createHandler } from "$fresh/server.ts";
 import { load } from "$std/dotenv/mod.ts";
 import { assert, assertEquals } from "$std/testing/asserts.ts";
-import { startOptions } from "@/configuration/configuration.ts";
 import manifest from "@/fresh.gen.ts";
+import config from "@/fresh.config.ts";
 
 await load({ envPath: ".env.test", export: true });
 
@@ -14,7 +14,7 @@ const CONN_INFO: ServeHandlerInfo = {
 };
 
 Deno.test("Jokes API route", async (t) => {
-  const handler = await createHandler(manifest, startOptions);
+  const handler = await createHandler(manifest, config);
 
   await t.step("it returns a joke", async () => {
     const response = await handler(new Request(url, {}), CONN_INFO);
