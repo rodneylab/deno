@@ -20,7 +20,7 @@ export const DenoIcon: FunctionComponent<DenoIconProps> = function DenoIcon({
       height={`${height}px`}
       style={{ color: colour }}
     >
-      <use href={asset("/sprite.svg#deno")} />
+      <use href={`${asset("/sprite.svg")}#deno`} />
     </svg>
   );
 };

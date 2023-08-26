@@ -21,7 +21,7 @@ export const LemonIcon: FunctionComponent<LemonIconProps> = function LemonIcon({
       viewBox="0 0 512 512"
       style={{ color: colour }}
     >
-      <use href={asset("/sprite.svg#lemon")} />
+      <use href={`${asset("/sprite.svg")}#lemon`} />
     </svg>
   );
 };
