@@ -27,7 +27,11 @@ Deno.test("Home route", async (t) => {
     const response = await handler(new Request(url), CONN_INFO);
 
     const body = await response.text();
-    assertStringIncludes(body, `<html lang="en-GB">`, 'Did not find HTML tag with expected lang attribute set');
+    assertStringIncludes(
+      body,
+      `<html lang="en-GB">`,
+      "Did not find HTML tag with expected lang attribute set",
+    );
   });
 
   await t.step("images have alt attribute", async () => {

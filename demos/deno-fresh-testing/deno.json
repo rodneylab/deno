@@ -8,6 +8,22 @@
     "test": "deno test --allow-env --allow-read --allow-net",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
+  "lint": {
+    "rules": {
+      "tags": [
+        "fresh",
+        "recommended"
+      ]
+    },
+    "exclude": [
+      "_fresh"
+    ]
+  },
+  "fmt": {
+    "exclude": [
+      "_fresh"
+    ]
+  },
   "imports": {
     "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.4.2/",
@@ -17,7 +33,7 @@
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.1.3",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
-    "$std/": "https://deno.land/std@0.198.0/"
+    "$std/": "https://deno.land/std@0.200.0/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

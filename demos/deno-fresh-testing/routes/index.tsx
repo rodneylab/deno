@@ -15,6 +15,7 @@ export default function Home() {
         <link rel="manifest" href="/manifest.webmanifest" />
         <link rel="preconnect" href="www.youtube-nocookie.com" />
         <link rel="dns-prefetch" href="www.youtube-nocookie.com" />
+
         <title>Trying Deno Fresh 🍋</title>
         <meta
           name="description"
