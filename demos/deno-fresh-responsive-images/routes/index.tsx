@@ -1,4 +1,4 @@
-import { asset, Head } from "$fresh/runtime.ts";
+import { Head } from "$fresh/runtime.ts";
 import { Image } from "npm:@unpic/preact";
 
 export default function Home() {
@@ -6,12 +6,6 @@ export default function Home() {
   return (
     <>
       <Head>
-        <link rel="stylesheet" href={asset("/fonts.css")} />
-        <link rel="stylesheet" href={asset("/global.css")} />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.webmanifest" />
         <title>Fresh App</title>
       </Head>
       <main className="wrapper">
