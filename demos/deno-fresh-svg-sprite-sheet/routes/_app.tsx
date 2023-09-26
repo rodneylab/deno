@@ -5,7 +5,9 @@ export default function App({ Component }: AppProps) {
   return (
     <>
       <Head>
-			<link rel="stylesheet" href={asset("/fonts.css")} />
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href={asset("/fonts.css")} />
         <link rel="stylesheet" href={asset("/global.css")} />
         <link rel="icon" href={asset("/favicon.ico")} sizes="any" />
         <link rel="icon" href={asset("/logo.svg")} type="image/svg+xml" />
