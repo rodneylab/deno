@@ -28,7 +28,8 @@
     "$fresh/": "https://deno.land/x/fresh@1.4.3/",
     "preact": "https://esm.sh/preact@10.15.1",
     "preact/": "https://esm.sh/preact@10.15.1/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1"
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
+    "$std/": "https://deno.land/std@0.203.0/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
