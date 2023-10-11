@@ -1,5 +1,15 @@
 import { asset } from "$fresh/runtime.ts";
 
+declare global {
+  namespace preact {
+    namespace JSX {
+      interface HTMLAttributes {
+        fetchpriority?: "auto" | "high" | "low";
+      }
+    }
+  }
+}
+
 export default function BannerImage() {
   return (
     <figure className="banner-image-wrapper">
@@ -23,7 +33,7 @@ export default function BannerImage() {
           alt="Picture of a lemon"
           loading="eager"
           decoding="async"
-          fetchPriority="high"
+          fetchpriority="high"
           height="432"
           width="768"
           src={asset("/lemon.5f0650d2.jpeg")}
