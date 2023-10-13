@@ -1,0 +1,122 @@
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--colour-dark);
+  font-family: var(--font-family-body);
+}
+
+h1 {
+  margin-bottom: var(--spacing-20);
+}
+.wrapper {
+  width: min(100% - var(--spacing-16), var(--max-width-wrapper));
+  margin: var(--spacing-4) auto var(--spacing-32);
+  padding-block: var(--spacing-20);
+}
+.heading {
+  margin-bottom: var(--spacing-24);
+  text-align: center;
+  font-size: var(--font-size-13);
+
+  font-family: var(--font-family-heading);
+
+  background-color: var(--colour-alt);
+
+  /* CREDIT: https://www.joshwcomeau.com/gradient-generator/ */
+  background-image: linear-gradient(
+    45deg,
+    oklch(64.32% 0.2047 139.46) 0%,
+    /* avoid rounding here to allow display on non-wide gamut screens */
+      oklch(66.65% 0.19845686455137146 136.0703777384692) 21%,
+    oklch(69.07% 0.1925 132.26) 30%,
+    oklch(73.04% 0.191 128.07) 39%,
+    oklch(75.53% 0.187 123.84) 46%,
+    oklch(78.18% 0.1835 118.92) 54%,
+    oklch(80.98% 0.181 113.37) 61%,
+    oklch(84.1% 0.1818 108.5) 69%,
+    oklch(85.7% 0.178 101.68) 79%,
+    oklch(89.24% 0.1787 95.99) 100%
+  );
+  color: var(--colour-dark);
+}
+
+.banner-image-wrapper {
+  background-size: cover;
+  background-image: url("data:image/jpeg;base64,/9j/2wBDAAwREhMUFBUUFBofGhUaHiIcGhohKC4jJB4hMzg/PTouKC5CRFpMPi5XRTc3VmBRVlpgZmRkQklveXFmeFtlaWf/2wBDAQgMDQwNDw8PDxFgEBIaVmBaYFpgY2NjY2BjYGBiY2NjY2NjY2NjY2NjY2JjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAFAAoDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAIG/8QAFQEBAQAAAAAAAAAAAAAAAAAABQf/2gAMAwEAAhADEAAAANjROXf/xAAXEAADAQAAAAAAAAAAAAAAAAAAARES/9oACAEBAAE/AKzTP//EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAIAQIBAT8Af//EABYRAAMAAAAAAAAAAAAAAAAAAAABEf/aAAgBAwEBPwCI/9k=");
+  width: var(--max-width-wrapper);
+  margin: var(--spacing-4) auto;
+}
+
+.feature {
+  background-color: var(--colour-theme);
+  font-size: var(--font-size-7);
+  padding-block: var(--spacing-4);
+  margin-bottom: var(--spacing-24);
+  text-align: center;
+}
+
+img {
+  max-width: var(--max-width-full);
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}
+.video-container {
+  background-color: var(--colour-alt);
+  margin: var(--spacing-0) auto;
+}
+
+.video-container button {
+  border-style: none;
+  background-color: var(--colour-brand);
+  width: var(--max-width-full);
+  aspect-ratio: 16 / 9;
+  font-size: var(--font-size-3);
+}
+.video-container button:focus,
+.video-container button:hover {
+  /* CREDIT: https://www.joshwcomeau.com/gradient-generator/ */
+  background-image: linear-gradient(
+    45deg,
+    oklch(64.32% 0.2047 139.46) 0%,
+    /* avoid rounding here to allow display on non-wide gamut screens */
+      oklch(66.65% 0.19845686455137146 136.0703777384692) 21%,
+    oklch(69.07% 0.1925 132.26) 30%,
+    oklch(73.04% 0.191 128.07) 39%,
+    oklch(75.53% 0.187 123.84) 46%,
+    oklch(78.18% 0.1835 118.92) 54%,
+    oklch(80.98% 0.181 113.37) 61%,
+    oklch(84.1% 0.1818 108.5) 69%,
+    oklch(85.7% 0.178 101.68) 79%,
+    oklch(89.24% 0.1787 95.99) 100%
+  );
+}
+.video {
+  display: flex;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+}
+
+figcaption {
+  background-color: var(--colour-theme);
+  color: var(--colour-dark);
+  font-size: var(--font-size-3);
+  padding: var(--spacing-2);
+  font-weight: var(--font-weight-bold);
+}
+
+.image-caption {
+  background-color: var(--colour-alt);
+  font-size: 1.25rem;
+  padding: var(--spacing-1) var(--spacing-4);
+  text-align: right;
+}
+
+.image-caption a {
+  color: var(--colour-dark);
+}

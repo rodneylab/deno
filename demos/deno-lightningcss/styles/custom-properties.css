@@ -1,0 +1,29 @@
+:root {
+  --colour-dark: oklch(12.42% 0.074 271.44); /* xiketic */
+  --colour-light: oklch(97.09% 0.009 301.34); /* white lilac */
+  --colour-brand: oklch(89.24% 0.1787 95.99); /* candlelight */
+  --colour-theme: oklch(63.24% 0.14 243.65); /* curious blue */
+  --colour-alt: oklch(64.32% 0.2047 139.46); /* limeade */
+
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-4: 1rem;
+  --spacing-8: 2rem;
+  --spacing-16: 4rem;
+  --spacing-20: 5rem;
+  --spacing-24: 6rem;
+  --spacing-32: 8rem;
+
+  --max-width-full: 100%;
+  --max-width-wrapper: 48rem;
+
+  --font-size-3: 1.5626rem;
+  --font-size-7: 3.8147rem;
+  --font-size-13: 14.5519rem;
+
+  --font-weight-bold: 700;
+
+  --font-family-heading: Raleway;
+  --font-family-body: "Nunito Sans";
+}
