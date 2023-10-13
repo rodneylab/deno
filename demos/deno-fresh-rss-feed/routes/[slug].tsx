@@ -1,20 +1,22 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
-import type { Post } from "@/utility/blog.ts";
 import { loadPost } from "@/utility/blog.ts";
 import { render } from "gfm/mod.ts";
 
 interface Data {
-  post: Post;
+  content: string;
+  postTitle: string;
 }
-
 export const handler: Handlers<Data> = {
   async GET(_request, context) {
     const {
       params: { slug },
     } = context;
 
-    const { content, postTitle } = await loadPost(slug);
+    const { content, postTitle } = (await loadPost(slug)) ?? {};
 
+    if (typeof content !== "string" || typeof postTitle !== "string") {
+      return context.renderNotFound();
+    }
     return context.render({ content, postTitle });
   },
 };
