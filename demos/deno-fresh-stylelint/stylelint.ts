@@ -1,6 +1,6 @@
 import { relative, resolve } from "$std/path/mod.ts";
 import stylelint from "npm:stylelint";
-import { rules as stylelintConfigRecommended } from "npm:stylelint-config-recommended";
+import stylelintConfigRecommended from "npm:stylelint-config-recommended";
 
 type Severity = "warning" | "error";
 
@@ -34,8 +34,7 @@ interface LintResult {
 const { results }: { results: LintResult[] } = await stylelint.lint({
   config: {
     rules: {
-      ...stylelintConfigRecommended,
-
+      ...stylelintConfigRecommended.rules,
       "color-named": "never",
       "font-family-name-quotes": "always-where-required",
       "font-weight-notation": "named-where-possible",
