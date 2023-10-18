@@ -14,25 +14,20 @@
         "fresh",
         "recommended"
       ]
-    },
-    "exclude": [
-      "_fresh"
-    ]
+    }
   },
-  "fmt": {
-    "exclude": [
-      "_fresh"
-    ]
-  },
+  "exclude": [
+    "**/_fresh/*"
+  ],
   "imports": {
     "@/": "./",
-    "$fresh/": "https://deno.land/x/fresh@1.4.3/",
-    "preact": "https://esm.sh/preact@10.15.1",
-    "preact/": "https://esm.sh/preact@10.15.1/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.1",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.1.3",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
-    "$std/": "https://deno.land/std@0.202.0/",
+    "$fresh/": "https://deno.land/x/fresh@1.5.2/",
+    "preact": "https://esm.sh/preact@10.18.1",
+    "preact/": "https://esm.sh/preact@10.18.1/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.1",
+    "$std/": "https://deno.land/std@0.204.0/",
     "svgo": "https://esm.sh/svgo@3.0.2/"
   },
   "compilerOptions": {
