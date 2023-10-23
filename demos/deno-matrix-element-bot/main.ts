@@ -1,5 +1,4 @@
 import "$std/dotenv/load.ts";
-import { serve } from "$std/http/server.ts";
 import {
   instantiate,
   matrix_message as matrixMessage,
@@ -24,7 +23,7 @@ function logRequest(request: Request, response: Response) {
   );
 }
 
-const handler = async (request: Request): Promise<Response> => {
+const handler: Deno.ServeHandler = async (request, _info): Promise<Response> => {
   if (typeof ELEMENT_ROOM_ID === "undefined") {
     throw new Error("env `ELEMENT_ROOM_ID` must be set");
   }
@@ -73,4 +72,4 @@ const handler = async (request: Request): Promise<Response> => {
   return response;
 };
 
-await serve(handler, { port });
+Deno.serve({ port }, handler);
