@@ -1,11 +1,12 @@
 import "$std/dotenv/load.ts";
-import { ConnInfo, Handler, serve } from "$std/http/server.ts";
 import { healthCheck } from "@/routes/health_check.ts";
 import { logRequest } from "@/utilities/logging.ts";
 
 const PORT = 8080;
 
-function remoteAddress(connectionInfo: ConnInfo): string | undefined {
+function remoteAddress(
+  connectionInfo: Deno.ServeHandlerInfo
+): string | undefined {
   const { remoteAddr } = connectionInfo;
   if (!("hostname" in remoteAddr)) {
     return undefined;
@@ -15,7 +16,7 @@ function remoteAddress(connectionInfo: ConnInfo): string | undefined {
   return hostname;
 }
 
-const handler: Handler = (request, connectionInfo) => {
+const handler: Deno.ServeHandler = (request, connectionInfo) => {
   const { method, url } = request;
   const { pathname } = new URL(url);
   logRequest(request);
@@ -57,4 +58,4 @@ const handler: Handler = (request, connectionInfo) => {
   }
 };
 
-await serve(handler, { port: PORT });
+Deno.serve({ port: PORT }, handler);
