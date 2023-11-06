@@ -1,7 +1,7 @@
 // @generated file from wasmbuild -- do not edit
 // deno-lint-ignore-file
 // deno-fmt-ignore-file
-// source-hash: d8682aacb6e3186dcb35898ea4d01ff9ffd49921
+// source-hash: c07c39c1d2476e8057a9a07524d33e9ed578b846
 let wasm;
 
 const heap = new Array(128).fill(undefined);
@@ -10,6 +10,20 @@ heap.push(undefined, null, true, false);
 
 function getObject(idx) {
   return heap[idx];
+}
+
+let heap_next = heap.length;
+
+function dropObject(idx) {
+  if (idx < 132) return;
+  heap[idx] = heap_next;
+  heap_next = idx;
+}
+
+function takeObject(idx) {
+  const ret = getObject(idx);
+  dropObject(idx);
+  return ret;
 }
 
 let WASM_VECTOR_LEN = 0;
@@ -83,20 +97,6 @@ function getInt32Memory0() {
     cachedInt32Memory0 = new Int32Array(wasm.memory.buffer);
   }
   return cachedInt32Memory0;
-}
-
-let heap_next = heap.length;
-
-function dropObject(idx) {
-  if (idx < 132) return;
-  heap[idx] = heap_next;
-  heap_next = idx;
-}
-
-function takeObject(idx) {
-  const ret = getObject(idx);
-  dropObject(idx);
-  return ret;
 }
 
 const cachedTextDecoder = typeof TextDecoder !== "undefined"
@@ -217,6 +217,9 @@ export function resize_image(image_bytes, options) {
 
 const imports = {
   __wbindgen_placeholder__: {
+    __wbindgen_object_drop_ref: function (arg0) {
+      takeObject(arg0);
+    },
     __wbindgen_string_get: function (arg0, arg1) {
       const obj = getObject(arg1);
       const ret = typeof obj === "string" ? obj : undefined;
@@ -230,9 +233,6 @@ const imports = {
       var len1 = WASM_VECTOR_LEN;
       getInt32Memory0()[arg0 / 4 + 1] = len1;
       getInt32Memory0()[arg0 / 4 + 0] = ptr1;
-    },
-    __wbindgen_object_drop_ref: function (arg0) {
-      takeObject(arg0);
     },
     __wbindgen_is_object: function (arg0) {
       const val = getObject(arg0);
@@ -278,11 +278,11 @@ const imports = {
       const ret = getStringFromWasm0(arg0, arg1);
       return addHeapObject(ret);
     },
-    __wbg_getwithrefkey_d1f0d12f1f1b63ea: function (arg0, arg1) {
+    __wbg_getwithrefkey_3b3c46ba20582127: function (arg0, arg1) {
       const ret = getObject(arg0)[getObject(arg1)];
       return addHeapObject(ret);
     },
-    __wbg_set_bd72c078edfa51ad: function (arg0, arg1, arg2) {
+    __wbg_set_8761474ad72b9bf1: function (arg0, arg1, arg2) {
       getObject(arg0)[takeObject(arg1)] = takeObject(arg2);
     },
     __wbg_new_898a68150f225f2e: function () {
@@ -356,8 +356,8 @@ const imports = {
   },
 };
 
-import { Loader } from "https://deno.land/x/wasmbuild@0.15.0/loader.ts";
-import { cacheToLocalDir } from "https://deno.land/x/wasmbuild@0.15.0/cache.ts";
+import { Loader } from "https://deno.land/x/wasmbuild@0.15.1/loader.ts";
+import { cacheToLocalDir } from "https://deno.land/x/wasmbuild@0.15.1/cache.ts";
 
 const loader = new Loader({
   imports,
