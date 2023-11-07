@@ -3,7 +3,7 @@ import { AppProps } from "$fresh/server.ts";
 
 export default function App({ Component }: AppProps) {
   return (
-    <html>
+    <html en-GB>
       <head>
         <link rel="icon" href={asset("/favicon.ico")} sizes="any" />
         <link rel="icon" href={asset("/icon.svg")} type="image/svg+xml" />
