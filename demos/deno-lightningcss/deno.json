@@ -23,10 +23,10 @@
     "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-    "$std/": "https://deno.land/std@0.204.0/",
+    "$std/": "https://deno.land/std@0.207.0/",
     "browserslist": "https://esm.sh/browserslist@4.22.1",
-    "esbuild/": "https://deno.land/x/esbuild@v0.19.4/",
-    "lightningcss": "https://esm.sh/lightningcss-wasm@1.22.0"
+    "esbuild/": "https://deno.land/x/esbuild@v0.19.6/",
+    "lightningcss": "https://esm.sh/lightningcss-wasm@1.22.1"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
