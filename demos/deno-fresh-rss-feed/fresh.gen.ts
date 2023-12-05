@@ -2,25 +2,26 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/[slug].tsx";
-import * as $1 from "./routes/_404.tsx";
-import * as $2 from "./routes/_app.tsx";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/rss.xml.ts";
-import * as $$0 from "./islands/Counter.tsx";
+import * as $_slug_ from "./routes/[slug].tsx";
+import * as $_404 from "./routes/_404.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $index from "./routes/index.tsx";
+import * as $rss_xml from "./routes/rss.xml.ts";
+import * as $Counter from "./islands/Counter.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/[slug].tsx": $0,
-    "./routes/_404.tsx": $1,
-    "./routes/_app.tsx": $2,
-    "./routes/index.tsx": $3,
-    "./routes/rss.xml.ts": $4,
+    "./routes/[slug].tsx": $_slug_,
+    "./routes/_404.tsx": $_404,
+    "./routes/_app.tsx": $_app,
+    "./routes/index.tsx": $index,
+    "./routes/rss.xml.ts": $rss_xml,
   },
   islands: {
-    "./islands/Counter.tsx": $$0,
+    "./islands/Counter.tsx": $Counter,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
