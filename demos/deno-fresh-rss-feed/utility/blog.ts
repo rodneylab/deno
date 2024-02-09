@@ -1,8 +1,8 @@
 import type { Parser } from "$std/front_matter/mod.ts";
-import { createExtractor, Format } from "$std/front_matter/mod.ts";
+import { createExtractor } from "$std/front_matter/mod.ts";
 import { parse as parseYAML } from "$std/yaml/parse.ts";
 
-const extractYAML = createExtractor({ [Format.YAML]: parseYAML as Parser });
+const extractYAML = createExtractor({ yaml: parseYAML as Parser });
 
 export interface PostMeta {
   slug: string;
