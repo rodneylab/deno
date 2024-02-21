@@ -1,7 +1,7 @@
 {
   "imports": {
     "@/": "./",
-    "$std/": "https://deno.land/std@0.208.0/",
+    "$std/": "https://deno.land/std@0.216.0/",
     "js-temporal/": "https://esm.sh/@js-temporal/polyfill@0.4.4/"
   },
   "tasks": {
