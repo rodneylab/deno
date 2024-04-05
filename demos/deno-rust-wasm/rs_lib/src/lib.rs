@@ -1,3 +1,5 @@
+#![warn(clippy::all, clippy::pedantic)]
+
 use photon_rs::{
   native::open_image_from_bytes,
   transform::{resize, SamplingFilter},
@@ -19,13 +21,11 @@ macro_rules! console_log {
 const PLACEHOLDER_WIDTH: u32 = 10;
 
 #[wasm_bindgen]
+#[must_use]
 pub fn base64_placeholder(data: &[u8]) -> String {
-  let image = match open_image_from_bytes(data) {
-    Ok(value) => value,
-    Err(_) => {
-      console_log!("Unable to open image");
-      return String::from("");
-    }
+  let Ok(image) = open_image_from_bytes(data) else {
+    console_log!("Unable to open image");
+    return String::new();
   };
   let aspect_ratio = image.get_width() / image.get_height();
 
