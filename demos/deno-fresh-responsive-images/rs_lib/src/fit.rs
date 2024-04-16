@@ -5,11 +5,13 @@ pub fn output_dimensions(
   input_height: u32,
   width: Option<u32>,
   height: Option<u32>,
-  fit: Option<String>,
+  fit: Option<&str>,
 ) -> (u32, u32) {
   let input_aspect_ratio = f64::from(input_width) / f64::from(input_height);
 
-  match fit.as_deref() {
+  #[allow(clippy::cast_possible_truncation)]
+  #[allow(clippy::cast_sign_loss)]
+  match fit {
     Some("min") => {
       // https://docs.imgix.com/apis/rendering/size/fit#min
       // Resizes and crops the image to match the aspect ratio of the requested width and height.
@@ -44,12 +46,12 @@ pub fn output_dimensions(
           input_height,
           None,
           None,
-          Some(String::from("clip")),
+          Some(&String::from("clip")),
         ),
       }
     }
     // preserve input aspect ratio
-    Some("clip") | Some(_) | None => match (width, height) {
+    Some("clip" | _) | None => match (width, height) {
       (Some(width_value), Some(height_value)) => {
         let aspect_ratio = f64::from(width_value) / f64::from(height_value);
         // requested dimensions are for image taller than input

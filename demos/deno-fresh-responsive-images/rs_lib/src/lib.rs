@@ -1,15 +1,15 @@
+#![warn(clippy::all, clippy::pedantic)]
+
 mod fit;
 
 use fit::output_dimensions;
 use image::{
-  error::ImageResult,
-  imageops::{self, FilterType},
-  DynamicImage::ImageRgba8,
-  ImageFormat, ImageOutputFormat,
+  codecs::jpeg::JpegEncoder, error::ImageResult, imageops::FilterType,
+  ImageFormat,
 };
 use serde::{Deserialize, Serialize};
 use std::io::{Cursor, Read, Seek};
-use wasm_bindgen::{prelude::*, JsValue};
+use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
 extern "C" {
@@ -19,6 +19,7 @@ extern "C" {
   fn log(s: &str);
 }
 
+#[allow(unused_macros)]
 macro_rules! console_log {
     ($($t:tt)*) => (log(&format_args!($($t)*).to_string()))
 }
@@ -41,8 +42,7 @@ fn image_mime_type(format: &ImageResult<ImageFormat>) -> Option<String> {
   match format {
     Ok(ImageFormat::Png) => Some(String::from("image/png")),
     Ok(ImageFormat::Jpeg) => Some(String::from("image/jpeg")),
-    Ok(_) => None,
-    Err(_) => None,
+    Ok(_) | Err(_) => None,
   }
 }
 
@@ -56,20 +56,22 @@ fn error_result(message: &str) -> JsValue {
 }
 
 #[wasm_bindgen]
+#[must_use]
+/// # Panics
+/// Panics if unable to convert the result into a JSValue
 pub fn resize_image(image_bytes: &[u8], options: JsValue) -> JsValue {
-  let input_image = match image::load_from_memory(image_bytes) {
-    Ok(value) => value,
-    Err(_) => return error_result("Unable to read input image bytes."),
+  let Ok(input_image) = image::load_from_memory(image_bytes) else {
+    return error_result("Unable to read input image bytes.");
   };
   let (input_width, input_height) = (input_image.width(), input_image.height());
-  let ResizeInputOptions { width, height, fit } =
-    match serde_wasm_bindgen::from_value(options) {
-      Ok(value) => value,
-      Err(_) => return error_result("Unable to parse input options."),
-    };
+  let Ok(ResizeInputOptions { width, height, fit }) =
+    serde_wasm_bindgen::from_value(options)
+  else {
+    return error_result("Unable to parse input options.");
+  };
 
   let (output_width, output_height) =
-    output_dimensions(input_width, input_height, width, height, fit);
+    output_dimensions(input_width, input_height, width, height, fit.as_deref());
   let format = image::guess_format(image_bytes);
   let mime_type = image_mime_type(&format);
 
@@ -83,21 +85,19 @@ pub fn resize_image(image_bytes: &[u8], options: JsValue) -> JsValue {
     return serde_wasm_bindgen::to_value(&result).unwrap();
   }
 
-  let resized_image = ImageRgba8(imageops::resize(
-    &input_image,
-    output_width,
-    output_height,
-    FilterType::Lanczos3,
-  ));
+  let resized_image =
+    input_image.resize(output_width, output_height, FilterType::Lanczos3);
 
   let mut cursor = Cursor::new(Vec::new());
   let output_result = match format {
     Ok(ImageFormat::Png) => {
-      resized_image.write_to(&mut cursor, ImageOutputFormat::Png)
+      resized_image.write_to(&mut cursor, ImageFormat::Png)
     }
     Ok(ImageFormat::Jpeg) => {
       let jpeg_quality = 90;
-      resized_image.write_to(&mut cursor, ImageOutputFormat::Jpeg(jpeg_quality))
+      let jpeg_encoder =
+        JpegEncoder::new_with_quality(&mut cursor, jpeg_quality);
+      resized_image.to_rgb8().write_with_encoder(jpeg_encoder)
     }
     Ok(_) | Err(_) => {
       return error_result("Image type not currently supported.")
