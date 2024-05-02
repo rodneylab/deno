@@ -17,15 +17,15 @@
   "exclude": ["**/_fresh/*"],
   "imports": {
     "@/": "./",
-    "$fresh/": "https://deno.land/x/fresh@1.6.5/",
-    "preact": "https://esm.sh/preact@10.19.2",
-    "preact/": "https://esm.sh/preact@10.19.2/",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-    "$std/": "https://deno.land/std@0.217.0/",
-    "browserslist": "https://esm.sh/browserslist@4.22.2",
-    "esbuild/": "https://deno.land/x/esbuild@v0.20.1/",
-    "lightningcss": "https://esm.sh/lightningcss-wasm@1.24.0"
+    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "preact": "https://esm.sh/preact@10.19.6",
+    "preact/": "https://esm.sh/preact@10.19.6/",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
+    "$std/": "https://deno.land/std@0.224.0/",
+    "browserslist": "https://esm.sh/browserslist@4.23.0",
+    "esbuild/": "https://deno.land/x/esbuild@v0.20.2/",
+    "lightningcss": "https://esm.sh/lightningcss-wasm@1.24.1"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
