@@ -1,9 +1,9 @@
 import type { ServeHandlerInfo } from "$fresh/server.ts";
 import { createHandler } from "$fresh/server.ts";
-import { assertEquals, assertStringIncludes } from "$std/assert/mod.ts";
-import { load } from "$std/dotenv/mod.ts";
 import config from "@/fresh.config.ts";
 import manifest from "@/fresh.gen.ts";
+import { assertEquals, assertStringIncludes } from "@std/assert";
+import { load } from "@std/dotenv";
 import { DOMParser } from "deno-dom/deno-dom-wasm.ts";
 
 await load({ envPath: ".env.test", export: true });

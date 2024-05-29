@@ -1,9 +1,9 @@
 import type { ServeHandlerInfo } from "$fresh/server.ts";
 import { createHandler } from "$fresh/server.ts";
-import { assert, assertEquals } from "$std/assert/mod.ts";
-import { load } from "$std/dotenv/mod.ts";
 import config from "@/fresh.config.ts";
 import manifest from "@/fresh.gen.ts";
+import { assert, assertEquals } from "@std/assert";
+import { load } from "@std/dotenv";
 
 await load({ envPath: ".env.test", export: true });
 
