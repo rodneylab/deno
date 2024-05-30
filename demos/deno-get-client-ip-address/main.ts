@@ -1,6 +1,8 @@
-import "$std/dotenv/load.ts";
 import { healthCheck } from "@/routes/health_check.ts";
 import { logRequest } from "@/utilities/logging.ts";
+import { load } from "@std/dotenv";
+
+await load({ export: true });
 
 const PORT = 8080;
 

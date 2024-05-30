@@ -1,5 +1,15 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/dotenv@^0.224.0": "jsr:@std/dotenv@0.224.0"
+    },
+    "jsr": {
+      "@std/dotenv@0.224.0": {
+        "integrity": "d9234cdf551507dcda60abb6c474289843741d8c07ee8ce540c60f5c1b220a1d"
+      }
+    }
+  },
   "remote": {
     "https://deno.land/std@0.192.0/_util/asserts.ts": "178dfc49a464aee693a7e285567b3d0b555dc805ff490505a8aae34f9cfb1462",
     "https://deno.land/std@0.192.0/async/abortable.ts": "fd682fa46f3b7b16b4606a5ab52a7ce309434b76f820d3221bdfb862719a15d7",
@@ -88,5 +98,10 @@
     "https://esm.sh/v125/jsbi@4.3.0/denonext/jsbi.mjs": "1ff9fc038fd7835deb108dd2c9fa94551e5317bb991b6c2c0acb83d6d6eb29a1",
     "https://esm.sh/v99/@js-temporal/polyfill@0.4.3/deno/polyfill.js": "c450b212dc236ffe5857786cb3b47e19f018d9166cc876ab8933110486f3a314",
     "https://esm.sh/v99/jsbi@4.3.0/deno/jsbi.js": "541742d16fba58ee3d4a8cddf2a7deac4a770cef41e85a8a5ded6cb6a51dbc31"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/dotenv@^0.224.0"
+    ]
   }
 }
