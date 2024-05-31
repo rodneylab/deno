@@ -1,5 +1,5 @@
-import { debounce } from "$std/async/mod.ts";
-import { relative, resolve } from "$std/path/mod.ts";
+import { debounce } from "@std/async";
+import { relative, resolve } from "@std/path";
 import browserslist from "browserslist";
 import { build } from "esbuild/mod.js";
 import init, { browserslistToTargets, transform } from "lightningcss";
