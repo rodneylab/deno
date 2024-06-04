@@ -1,9 +1,11 @@
-import "$std/dotenv/load.ts";
 import {
   instantiate,
   matrix_message as matrixMessage,
 } from "@/lib/deno_matrix_element_bot.generated.js";
+import { load } from "@std/dotenv";
 import { Temporal } from "js-temporal/polyfill/?dts";
+
+await load({ export: true });
 
 const ELEMENT_ROOM_ID = Deno.env.get("ELEMENT_ROOM_ID");
 const ELEMENT_BOT_USERNAME = Deno.env.get("ELEMENT_BOT_USERNAME");

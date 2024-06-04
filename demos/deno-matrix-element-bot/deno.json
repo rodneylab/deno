@@ -2,11 +2,11 @@
   "tasks": {
     "start": "deno run -A  --watch=utils/,main.ts main.ts",
     "test": "deno test --allow-env --allow-read --allow-net --allow-run --allow-write dev.ts",
-    "wasmbuild": "deno run -A https://deno.land/x/wasmbuild@0.15.6/main.ts"
+    "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.17.1"
   },
   "imports": {
     "@/": "./",
-    "$std/": "https://deno.land/std@0.224.0/",
+    "@std/dotenv": "jsr:@std/dotenv@^0.224.0",
     "js-temporal/": "https://cdn.skypack.dev/@js-temporal/"
   }
 }

@@ -1,5 +1,15 @@
 {
   "version": "3",
+  "packages": {
+    "specifiers": {
+      "jsr:@std/dotenv@^0.224.0": "jsr:@std/dotenv@0.224.0"
+    },
+    "jsr": {
+      "@std/dotenv@0.224.0": {
+        "integrity": "d9234cdf551507dcda60abb6c474289843741d8c07ee8ce540c60f5c1b220a1d"
+      }
+    }
+  },
   "remote": {
     "https://cdn.skypack.dev/-/@js-temporal/polyfill@v0.4.3-lDkqhS92gOiNvjinGNRD/dist=es2019,mode=imports/optimized/@js-temporal/polyfill.js": "568a6ba87b29e3976956744c53450154b9d9d56119ce1a41a1e797ba0ef87797",
     "https://cdn.skypack.dev/-/@js-temporal/polyfill@v0.4.3-lDkqhS92gOiNvjinGNRD/dist=es2019,mode=types/index.d.ts": "4f4b042e1576e3158508eb16cc39f35e215137c3f01f1fc45d205fe959cc205c",
@@ -203,5 +213,10 @@
     "https://deno.land/x/wasmbuild@0.15.1/loader.ts": "8c2fc10e21678e42f84c5135d8ab6ab7dc92424c3f05d2354896a29ccfd02a63",
     "https://deno.land/x/wasmbuild@0.15.6/loader/cache.ts": "362d03a2ceb3d3e130373102a5de6d54ffda659a0911c2fcc090c29c3555f7ef",
     "https://deno.land/x/wasmbuild@0.15.6/loader/fetch.ts": "7d015203a93cbadd05034cbb6e726d35f47e1f51140d91e69aeddc5d71b06ec8"
+  },
+  "workspace": {
+    "dependencies": [
+      "jsr:@std/dotenv@^0.224.0"
+    ]
   }
 }
