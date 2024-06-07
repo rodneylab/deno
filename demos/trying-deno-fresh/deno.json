@@ -19,11 +19,11 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "@/": "./",
     "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "@/": "./",
+    "@std/dotenv": "jsr:@std/dotenv@^0.224.0",
     "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/",
-    "$std/": "https://deno.land/std@0.224.0/"
+    "preact/": "https://esm.sh/preact@10.19.6/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
