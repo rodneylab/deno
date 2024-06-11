@@ -1,5 +1,5 @@
-import { debounce } from "$std/async/mod.ts";
-import { relative, resolve } from "$std/path/mod.ts";
+import { debounce } from "@std/async";
+import {relative,resolve} from "@std/path";
 import { config } from "@/postcss.config.ts";
 import postcss from "postcss/mod.js";
 
