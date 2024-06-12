@@ -2,7 +2,9 @@
 // @ts-nocheck: generated
 // deno-lint-ignore-file
 // deno-fmt-ignore-file
-// source-hash: dd6b431639c868ab4733a34fc0bfeca4c6357052
+/// <reference types="./rs_lib.generated.d.ts" />
+
+// source-hash: 73a32e949ed6cd4d2704f24af163ff567f237543
 let wasm;
 
 const heap = new Array(128).fill(undefined);
@@ -89,6 +91,7 @@ function passStringToWasm0(arg, malloc, realloc) {
     const ret = encodeString(arg, view);
 
     offset += ret.written;
+    ptr = realloc(ptr, len, offset, 1) >>> 0;
   }
 
   WASM_VECTOR_LEN = offset;
@@ -305,6 +308,9 @@ const imports = {
       const ret = getObject(arg0) in getObject(arg1);
       return ret;
     },
+    __wbindgen_object_drop_ref: function (arg0) {
+      takeObject(arg0);
+    },
     __wbg_isSafeInteger_bb8e18dd21c97288: function (arg0) {
       const ret = Number.isSafeInteger(getObject(arg0));
       return ret;
@@ -327,9 +333,6 @@ const imports = {
     },
     __wbg_set_502d29070ea18557: function (arg0, arg1, arg2) {
       getObject(arg0)[arg1 >>> 0] = takeObject(arg2);
-    },
-    __wbindgen_object_drop_ref: function (arg0) {
-      takeObject(arg0);
     },
     __wbg_length_72e2208bbc0efc61: function (arg0) {
       const ret = getObject(arg0).length;
@@ -363,56 +366,23 @@ const imports = {
   },
 };
 
-/**
- * @callback WasmBuildDecompressCallback
- * @param {Uint8Array} compressed
- * @returns {Uint8Array} decompressed
- */
-
-/**
- * @callback WasmBuildCacheCallback
- * @param {URL} url
- * @param {WasmBuildDecompressCallback | undefined} decompress
- * @returns {Promise<URL |Uint8Array>}
- */
-
-/**
- * @typedef WasmBuildLoaderOptions
- * @property {WebAssembly.Imports | undefined} imports - The Wasm module's imports.
- * @property {WasmBuildCacheCallback} [cache] - A function that caches the Wasm module to
- * a local path so that a network request isn't required on every load.
- *
- * Returns an ArrayBuffer with the bytes on download success, but cache save failure.
- */
-
 class WasmBuildLoader {
-  /** @type {WasmBuildLoaderOptions} */
   #options;
-  /** @type {Promise<WebAssembly.WebAssemblyInstantiatedSource> | undefined} */
   #lastLoadPromise;
-  /** @type {WebAssembly.WebAssemblyInstantiatedSource | undefined} */
   #instantiated;
 
-  /** @param {WasmBuildLoaderOptions} options */
   constructor(options) {
     this.#options = options;
   }
 
-  /** @returns {WebAssembly.Instance | undefined} */
   get instance() {
     return this.#instantiated?.instance;
   }
 
-  /** @returns {WebAssembly.Module | undefined} */
   get module() {
     return this.#instantiated?.module;
   }
 
-  /**
-   * @param {URL} url
-   * @param {WasmBuildDecompressCallback | undefined} decompress
-   * @returns {Promise<WebAssembly.WebAssemblyInstantiatedSource>}
-   */
   load(
     url,
     decompress,
@@ -432,10 +402,6 @@ class WasmBuildLoader {
     return this.#lastLoadPromise;
   }
 
-  /**
-   * @param {URL} url
-   * @param {WasmBuildDecompressCallback | undefined} decompress
-   */
   async #instantiate(url, decompress) {
     const imports = this.#options.imports;
     if (this.#options.cache != null && url.protocol !== "file:") {
@@ -458,8 +424,7 @@ class WasmBuildLoader {
     const isFile = url.protocol === "file:";
 
     // make file urls work in Node via dnt
-    const isNode =
-      (/** @type {any} */ (globalThis)).process?.versions?.node != null;
+    const isNode = globalThis.process?.versions?.node != null;
     if (isFile && typeof Deno !== "object") {
       throw new Error(
         "Loading local files are not supported in this environment",
@@ -488,12 +453,7 @@ class WasmBuildLoader {
           wasmResponse.headers.get("content-type")?.toLowerCase()
             .startsWith("application/wasm")
         ) {
-          return WebAssembly.instantiateStreaming(
-            // Cast to any so there's no type checking issues with dnt
-            // (https://github.com/denoland/wasmbuild/issues/92)
-            /** @type {any} */ (wasmResponse),
-            imports,
-          );
+          return WebAssembly.instantiateStreaming(wasmResponse, imports);
         } else {
           return WebAssembly.instantiate(
             await wasmResponse.arrayBuffer(),
@@ -506,65 +466,19 @@ class WasmBuildLoader {
     }
   }
 }
-
-/** @param {URL | string} url */
-async function fetchWithRetries(url, maxRetries = 5) {
-  let sleepMs = 250;
-  let iterationCount = 0;
-  while (true) {
-    iterationCount++;
-    try {
-      const res = await fetch(url);
-      if (res.ok || iterationCount > maxRetries) {
-        return res;
-      }
-    } catch (err) {
-      if (iterationCount > maxRetries) {
-        throw err;
-      }
-    }
-    console.warn(`Failed fetching. Retrying in ${sleepMs}ms...`);
-    await new Promise((resolve) => setTimeout(resolve, sleepMs));
-    sleepMs = Math.min(sleepMs * 2, 10_000);
-  }
-}
 const isNodeOrDeno = typeof Deno === "object" ||
   (typeof process !== "undefined" && process.versions != null &&
     process.versions.node != null);
 
 const loader = new WasmBuildLoader({
   imports,
-  cache: isNodeOrDeno
-    ? (await import("https://deno.land/x/wasmbuild@0.15.6/loader/cache.ts"))
-      .cacheToLocalDir
-    : undefined,
+  cache: isNodeOrDeno ? cacheToLocalDir : undefined,
 });
-/**
- * Options for instantiating a Wasm instance.
- * @typedef {Object} InstantiateOptions
- * @property {URL=} url - Optional url to the Wasm file to instantiate.
- * @property {DecompressCallback=} decompress - Callback to decompress the
- * raw Wasm file bytes before instantiating.
- */
 
-/** Instantiates an instance of the Wasm module returning its functions.
- * @remarks It is safe to call this multiple times and once successfully
- * loaded it will always return a reference to the same object.
- * @param {InstantiateOptions=} opts
- */
 export async function instantiate(opts) {
   return (await instantiateWithInstance(opts)).exports;
 }
 
-/** Instantiates an instance of the Wasm module along with its exports.
- * @remarks It is safe to call this multiple times and once successfully
- * loaded it will always return a reference to the same object.
- * @param {InstantiateOptions=} opts
- * @returns {Promise<{
- *   instance: WebAssembly.Instance;
- *   exports: { resize_image: typeof resize_image }
- * }>}
- */
 export async function instantiateWithInstance(opts) {
   const { instance } = await loader.load(
     opts?.url ?? new URL("rs_lib_bg.wasm", import.meta.url),
@@ -583,7 +497,171 @@ function getWasmInstanceExports() {
   return { resize_image };
 }
 
-/** Gets if the Wasm module has been instantiated. */
 export function isInstantiated() {
   return loader.instance != null;
+}
+export async function cacheToLocalDir(url, decompress) {
+  const localPath = await getUrlLocalPath(url);
+  if (localPath == null) {
+    return undefined;
+  }
+  if (!await exists(localPath)) {
+    const fileBytes = decompress(new Uint8Array(await getUrlBytes(url)));
+    try {
+      await Deno.writeFile(localPath, fileBytes);
+    } catch {
+      // ignore and return the wasm bytes
+      return fileBytes;
+    }
+  }
+  return toFileUrl(localPath);
+}
+async function getUrlLocalPath(url) {
+  try {
+    const dataDirPath = await getInitializedLocalDataDirPath();
+    const hash = await getUrlHash(url);
+    return `${dataDirPath}/${hash}.wasm`;
+  } catch {
+    return undefined;
+  }
+}
+async function getInitializedLocalDataDirPath() {
+  const dataDir = localDataDir();
+  if (dataDir == null) {
+    throw new Error(`Could not find local data directory.`);
+  }
+  const dirPath = `${dataDir}/deno-wasmbuild`;
+  await ensureDir(dirPath);
+  return dirPath;
+}
+async function exists(filePath) {
+  try {
+    await Deno.lstat(filePath);
+    return true;
+  } catch (error) {
+    if (error instanceof Deno.errors.NotFound) {
+      return false;
+    }
+    throw error;
+  }
+}
+async function ensureDir(dir) {
+  try {
+    const fileInfo = await Deno.lstat(dir);
+    if (!fileInfo.isDirectory) {
+      throw new Error(`Path was not a directory '${dir}'`);
+    }
+  } catch (err) {
+    if (err instanceof Deno.errors.NotFound) {
+      // if dir not exists. then create it.
+      await Deno.mkdir(dir, { recursive: true });
+      return;
+    }
+    throw err;
+  }
+}
+async function getUrlHash(url) {
+  // Taken from MDN: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
+  const hashBuffer = await crypto.subtle.digest(
+    "SHA-256",
+    new TextEncoder().encode(url.href),
+  );
+  // convert buffer to byte array
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  // convert bytes to hex string
+  const hashHex = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hashHex;
+}
+async function getUrlBytes(url) {
+  const response = await fetchWithRetries(url);
+  return await response.arrayBuffer();
+}
+// the below is extracted from deno_std/path
+const WHITESPACE_ENCODINGS = {
+  "\u0009": "%09",
+  "\u000A": "%0A",
+  "\u000B": "%0B",
+  "\u000C": "%0C",
+  "\u000D": "%0D",
+  "\u0020": "%20",
+};
+function encodeWhitespace(string) {
+  return string.replaceAll(/[\s]/g, (c) => {
+    return WHITESPACE_ENCODINGS[c] ?? c;
+  });
+}
+function toFileUrl(path) {
+  return Deno.build.os === "windows"
+    ? windowsToFileUrl(path)
+    : posixToFileUrl(path);
+}
+function posixToFileUrl(path) {
+  const url = new URL("file:///");
+  url.pathname = encodeWhitespace(
+    path.replace(/%/g, "%25").replace(/\\/g, "%5C"),
+  );
+  return url;
+}
+function windowsToFileUrl(path) {
+  const [, hostname, pathname] = path.match(
+    /^(?:[/\\]{2}([^/\\]+)(?=[/\\](?:[^/\\]|$)))?(.*)/,
+  );
+  const url = new URL("file:///");
+  url.pathname = encodeWhitespace(pathname.replace(/%/g, "%25"));
+  if (hostname != null && hostname != "localhost") {
+    url.hostname = hostname;
+    if (!url.hostname) {
+      throw new TypeError("Invalid hostname.");
+    }
+  }
+  return url;
+}
+export async function fetchWithRetries(url, maxRetries = 5) {
+  let sleepMs = 250;
+  let iterationCount = 0;
+  while (true) {
+    iterationCount++;
+    try {
+      const res = await fetch(url);
+      if (res.ok || iterationCount > maxRetries) {
+        return res;
+      }
+    } catch (err) {
+      if (iterationCount > maxRetries) {
+        throw err;
+      }
+    }
+    console.warn(`Failed fetching. Retrying in ${sleepMs}ms...`);
+    await new Promise((resolve) => setTimeout(resolve, sleepMs));
+    sleepMs = Math.min(sleepMs * 2, 10000);
+  }
+}
+// MIT License - Copyright (c) justjavac.
+// https://github.com/justjavac/deno_dirs/blob/e8c001bbef558f08fd486d444af391729b0b8068/data_local_dir/mod.ts
+function localDataDir() {
+  switch (Deno.build.os) {
+    case "linux": {
+      const xdg = Deno.env.get("XDG_DATA_HOME");
+      if (xdg) {
+        return xdg;
+      }
+      const home = Deno.env.get("HOME");
+      if (home) {
+        return `${home}/.local/share`;
+      }
+      break;
+    }
+    case "darwin": {
+      const home = Deno.env.get("HOME");
+      if (home) {
+        return `${home}/Library/Application Support`;
+      }
+      break;
+    }
+    case "windows":
+      return Deno.env.get("LOCALAPPDATA") ?? undefined;
+  }
+  return undefined;
 }
