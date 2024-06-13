@@ -1,6 +1,6 @@
-import type { Parser } from "$std/front_matter/mod.ts";
-import { createExtractor } from "$std/front_matter/mod.ts";
-import { parse as parseYAML } from "$std/yaml/parse.ts";
+import type { Parser } from "@std/front-matter";
+import { createExtractor } from "@std/front-matter";
+import { parse as parseYAML } from "@std/yaml";
 
 const extractYAML = createExtractor({ yaml: parseYAML as Parser });
 

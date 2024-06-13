@@ -1,6 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { loadPost } from "@/utility/blog.ts";
-import { render } from "gfm/mod.ts";
+import { render } from "@deno/gfm";
 
 interface Data {
   content: string;
