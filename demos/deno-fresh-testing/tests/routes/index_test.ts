@@ -4,7 +4,7 @@ import config from "@/fresh.config.ts";
 import manifest from "@/fresh.gen.ts";
 import { assertEquals, assertStringIncludes } from "@std/assert";
 import { load } from "@std/dotenv";
-import { DOMParser } from "deno-dom/deno-dom-wasm.ts";
+import { DOMParser } from "jsr:@b-fuze/deno-dom";
 
 await load({ envPath: ".env.test", export: true });
 
