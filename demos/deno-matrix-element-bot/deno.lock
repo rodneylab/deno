@@ -2,11 +2,11 @@
   "version": "3",
   "packages": {
     "specifiers": {
-      "jsr:@std/dotenv@^0.224.0": "jsr:@std/dotenv@0.224.0"
+      "jsr:@std/dotenv@^0.224.1": "jsr:@std/dotenv@0.224.1"
     },
     "jsr": {
-      "@std/dotenv@0.224.0": {
-        "integrity": "d9234cdf551507dcda60abb6c474289843741d8c07ee8ce540c60f5c1b220a1d"
+      "@std/dotenv@0.224.1": {
+        "integrity": "5e254d0cbaf62188da372ab8866f965fa8a3ec96f19232482c8697b319c308b4"
       }
     }
   },
@@ -216,7 +216,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/dotenv@^0.224.0"
+      "jsr:@std/dotenv@^0.224.1"
     ]
   }
 }
