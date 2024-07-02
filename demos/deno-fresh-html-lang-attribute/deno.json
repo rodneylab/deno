@@ -22,7 +22,7 @@
     "$fresh/": "https://deno.land/x/fresh@1.6.8/",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/dotenv": "jsr:@std/dotenv@^0.224.0",
+    "@std/dotenv": "jsr:@std/dotenv@^0.224.1",
     "preact": "https://esm.sh/preact@10.19.6",
     "preact/": "https://esm.sh/preact@10.19.6/"
   },
