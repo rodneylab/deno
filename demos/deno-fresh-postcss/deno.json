@@ -24,8 +24,8 @@
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/async": "jsr:@std/async@^0.224.2",
-    "@std/path": "jsr:@std/path@^1.0.0",
+    "@std/async": "jsr:@std/async@^1.0.3",
+    "@std/path": "jsr:@std/path@^1.0.2",
     "postcss/": "https://deno.land/x/postcss@8.4.16/",
     "preact": "https://esm.sh/preact@10.19.6",
     "preact/": "https://esm.sh/preact@10.19.6/"
