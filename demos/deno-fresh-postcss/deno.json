@@ -20,15 +20,15 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/async": "jsr:@std/async@^1.0.3",
-    "@std/path": "jsr:@std/path@^1.0.2",
+    "@std/async": "jsr:@std/async@^1.0.8",
+    "@std/path": "jsr:@std/path@^1.0.8",
     "postcss/": "https://deno.land/x/postcss@8.4.16/",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/"
+    "preact": "https://esm.sh/preact@10.22.0",
+    "preact/": "https://esm.sh/preact@10.22.0/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
