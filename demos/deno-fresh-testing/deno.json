@@ -20,7 +20,7 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.1/",
     "@/": "./",
     "@b-fuze/deno-dom": "jsr:@b-fuze/deno-dom@^0.1.47",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",

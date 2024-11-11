@@ -4,7 +4,7 @@
 // deno-fmt-ignore-file
 /// <reference types="./rs_lib.generated.d.ts" />
 
-// source-hash: 477a1d92cf061958b203ed4f3071b43d89d34cca
+// source-hash: 98d21232e3ec8c66f0f6e7a6786dcf336ab90373
 let wasm;
 
 const heap = new Array(128).fill(undefined);
@@ -13,20 +13,6 @@ heap.push(undefined, null, true, false);
 
 function getObject(idx) {
   return heap[idx];
-}
-
-let heap_next = heap.length;
-
-function dropObject(idx) {
-  if (idx < 132) return;
-  heap[idx] = heap_next;
-  heap_next = idx;
-}
-
-function takeObject(idx) {
-  const ret = getObject(idx);
-  dropObject(idx);
-  return ret;
 }
 
 function isLikeNone(x) {
@@ -127,6 +113,8 @@ function getStringFromWasm0(ptr, len) {
   return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
 }
 
+let heap_next = heap.length;
+
 function addHeapObject(obj) {
   if (heap_next === heap.length) heap.push(heap.length + 1);
   const idx = heap_next;
@@ -134,6 +122,18 @@ function addHeapObject(obj) {
 
   heap[idx] = obj;
   return idx;
+}
+
+function dropObject(idx) {
+  if (idx < 132) return;
+  heap[idx] = heap_next;
+  heap_next = idx;
+}
+
+function takeObject(idx) {
+  const ret = getObject(idx);
+  dropObject(idx);
+  return ret;
 }
 
 function debugString(val) {
@@ -223,9 +223,6 @@ export function resize_image(image_bytes, options) {
 
 const imports = {
   __wbindgen_placeholder__: {
-    __wbindgen_object_drop_ref: function (arg0) {
-      takeObject(arg0);
-    },
     __wbindgen_jsval_loose_eq: function (arg0, arg1) {
       const ret = getObject(arg0) == getObject(arg1);
       return ret;
@@ -333,6 +330,9 @@ const imports = {
     },
     __wbg_set_d4638f722068f043: function (arg0, arg1, arg2) {
       getObject(arg0)[arg1 >>> 0] = takeObject(arg2);
+    },
+    __wbindgen_object_drop_ref: function (arg0) {
+      takeObject(arg0);
     },
     __wbg_length_c20a40f15020d68a: function (arg0) {
       const ret = getObject(arg0).length;

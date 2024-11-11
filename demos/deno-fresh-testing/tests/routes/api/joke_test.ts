@@ -12,7 +12,6 @@ Deno.test("Jokes API route", async (t) => {
   const handler = await createHandler(manifest, config);
 
   await t.step("it returns a joke", async () => {
-    //const response = await handler(new Request(url, {}), CONN_INFO);
     const response = await handler(new Request(url, {}));
     const { status } = response;
     assertEquals(status, 200);
