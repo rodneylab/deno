@@ -5,7 +5,7 @@
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts",
-    "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.17.2",
+    "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.17.3",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
   "lint": {
@@ -20,12 +20,12 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/"
+    "preact": "https://esm.sh/preact@10.22.0",
+    "preact/": "https://esm.sh/preact@10.22.0/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
