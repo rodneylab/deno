@@ -9,6 +9,9 @@
     "lint:css": "deno run --allow-env --allow-read --allow-sys stylelint.ts",
     "watch:css": "deno run -A lightningcss.ts"
   },
+  "fmt": {
+    "exclude": ["static/styles.css", "styles/main_bundled.css"]
+  },
   "lint": {
     "rules": {
       "tags": ["fresh", "recommended"]
@@ -16,18 +19,18 @@
   },
   "exclude": ["**/_fresh/*"],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/async": "jsr:@std/async@^1.0.3",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.0",
-    "@std/path": "jsr:@std/path@^1.0.2",
-    "browserslist": "https://esm.sh/browserslist@4.23.3",
-    "esbuild/": "https://deno.land/x/esbuild@v0.23.0/",
-    "lightningcss": "https://esm.sh/lightningcss-wasm@1.25.1",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/"
+    "@std/async": "jsr:@std/async@^1.0.8",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "@std/path": "jsr:@std/path@^1.0.8",
+    "browserslist": "https://esm.sh/browserslist@4.24.2",
+    "esbuild/": "https://deno.land/x/esbuild@v0.24.0/",
+    "lightningcss": "https://esm.sh/lightningcss-wasm@1.28.1",
+    "preact": "https://esm.sh/preact@10.22.0",
+    "preact/": "https://esm.sh/preact@10.22.0/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",

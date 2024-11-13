@@ -29,8 +29,11 @@ h1 {
   background-image: linear-gradient(
     45deg,
     oklch(64.32% 0.2047 139.46) 0%,
-    /* avoid rounding here to allow display on non-wide gamut screens */
-      oklch(66.65% 0.19845686455137146 136.0703777384692) 21%,
+    /* avoid rounding here to allow display on non-wide gamut screens */ oklch(
+      66.65%
+      0.19845686455137146
+      136.0703777384692
+    ) 21%,
     oklch(69.07% 0.1925 132.26) 30%,
     oklch(73.04% 0.191 128.07) 39%,
     oklch(75.53% 0.187 123.84) 46%,
@@ -84,8 +87,11 @@ button {
   background-image: linear-gradient(
     45deg,
     oklch(64.32% 0.2047 139.46) 0%,
-    /* avoid rounding here to allow display on non-wide gamut screens */
-      oklch(66.65% 0.19845686455137146 136.0703777384692) 21%,
+    /* avoid rounding here to allow display on non-wide gamut screens */ oklch(
+      66.65%
+      0.19845686455137146
+      136.0703777384692
+    ) 21%,
     oklch(69.07% 0.1925 132.26) 30%,
     oklch(73.04% 0.191 128.07) 39%,
     oklch(75.53% 0.187 123.84) 46%,
