@@ -25,7 +25,10 @@ function logRequest(request: Request, response: Response) {
   );
 }
 
-const handler: Deno.ServeHandler = async (request, _info): Promise<Response> => {
+const handler: Deno.ServeHandler = async (
+  request,
+  _info,
+): Promise<Response> => {
   if (typeof ELEMENT_ROOM_ID === "undefined") {
     throw new Error("env `ELEMENT_ROOM_ID` must be set");
   }
