@@ -22,7 +22,7 @@ export default function Image({ alt, placeholder, src }: ImageProps) {
         alt={alt}
         loading="eager"
         decoding="async"
-        fetchPriority="high"
+        fetchpriority="high"
         height="256"
         width="256"
         src={placeholder}
