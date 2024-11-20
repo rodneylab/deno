@@ -7,6 +7,9 @@
     "preview": "deno run -A main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
+  "fmt": {
+    "exclude": ["static/*.css"]
+  },
   "lint": {
     "rules": {
       "tags": [
@@ -19,11 +22,11 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.6.8/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@/": "./",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.0",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/"
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "preact": "https://esm.sh/preact@10.22.0",
+    "preact/": "https://esm.sh/preact@10.22.0/"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
