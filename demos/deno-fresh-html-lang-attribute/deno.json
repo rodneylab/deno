@@ -7,6 +7,9 @@
     "preview": "deno run -A main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
+  "fmt": {
+    "exclude": ["static/*.css"]
+  },
   "lint": {
     "rules": {
       "tags": [
