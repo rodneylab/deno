@@ -1,7 +1,7 @@
-import autoprefixer from "npm:autoprefixer";
-import csso from "npm:postcss-csso";
-import customMediaPlugin from "npm:postcss-custom-media";
-import postcssPresetEnv from "npm:postcss-preset-env";
+import autoprefixer from "autoprefixer";
+import csso from "postcss-csso";
+import customMediaPlugin from "postcss-custom-media";
+import postcssPresetEnv from "postcss-preset-env";
 
 export const config = {
   plugins: [

@@ -8,6 +8,9 @@
     "preview": "deno run -A main.ts",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
+  "fmt": {
+    "exclude": ["static/styles/*.css"]
+  },
   "lint": {
     "rules": {
       "tags": [
@@ -26,6 +29,10 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "@std/async": "jsr:@std/async@^1.0.8",
     "@std/path": "jsr:@std/path@^1.0.8",
+    "autoprefixer": "npm:autoprefixer@^10.4.20",
+    "postcss-csso": "npm:postcss-csso@^6.0.1",
+    "postcss-custom-media": "npm:postcss-custom-media@^11.0.5",
+    "postcss-preset-env": "npm:postcss-preset-env@^10.1.1",
     "postcss/": "https://deno.land/x/postcss@8.4.16/",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/"
