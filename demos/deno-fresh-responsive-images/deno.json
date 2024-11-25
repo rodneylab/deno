@@ -8,17 +8,15 @@
     "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.17.3",
     "update": "deno run -A -r https://fresh.deno.dev/update ."
   },
+  "fmt": {
+    "exclude": ["static/*.css"]
+  },
   "lint": {
     "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
+      "tags": ["fresh", "recommended"]
     }
   },
-  "exclude": [
-    "**/_fresh/*"
-  ],
+  "exclude": ["**/_fresh/*"],
   "imports": {
     "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@/": "./",
