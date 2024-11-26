@@ -1,8 +1,4 @@
-import type { Parser } from "@std/front-matter";
-import { createExtractor } from "@std/front-matter";
-import { parse as parseYAML } from "@std/yaml";
-
-const extractYAML = createExtractor({ yaml: parseYAML as Parser });
+import { extractYaml } from "@std/front-matter";
 
 export interface PostMeta {
   slug: string;
@@ -27,7 +23,7 @@ export async function loadPost(slug: string): Promise<Post | null> {
     console.error(`Error loading: ${error}`);
     throw error;
   }
-  const { attrs, body } = extractYAML(text);
+  const { attrs, body } = extractYaml(text);
   const { datePublished, featuredImage, seoMetaDescription, postTitle } =
     attrs as Record<string, string>;
 
@@ -54,7 +50,7 @@ export async function loadPostMeta(slug: string): Promise<PostMeta | null> {
   }
   const {
     attrs: { postTitle, datePublished, seoMetaDescription, featuredImage },
-  } = extractYAML<PostMeta>(text);
+  } = extractYaml<PostMeta>(text);
 
   return { slug, postTitle, datePublished, seoMetaDescription, featuredImage };
 }
