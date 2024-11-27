@@ -30,7 +30,9 @@
     "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "@std/path": "jsr:@std/path@^1.0.8",
     "preact": "https://esm.sh/preact@10.22.0",
-    "preact/": "https://esm.sh/preact@10.22.0/"
+    "preact/": "https://esm.sh/preact@10.22.0/",
+    "stylelint": "npm:stylelint@^16.10.0",
+    "stylelint-config-recommended": "npm:stylelint-config-recommended@^14.0.1"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
