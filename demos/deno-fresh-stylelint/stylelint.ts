@@ -1,6 +1,6 @@
 import { relative, resolve } from "@std/path";
-import stylelint from "npm:stylelint";
-import stylelintConfigRecommended from "npm:stylelint-config-recommended";
+import stylelint from "stylelint";
+import stylelintConfigRecommended from "stylelint-config-recommended";
 
 type Severity = "warning" | "error";
 
