@@ -1,4 +1,4 @@
-import { optimize } from "npm:svgo";
+import { optimize } from "svgo";
 
 const svgString = await Deno.readTextFile("./assets/sprite.svg");
 const { data: optimisedSVG } = optimize(svgString, {

@@ -8,6 +8,9 @@
     "preview": "deno run -A main.ts",
     "minify": "deno run --allow-env=DENO_ENV --allow-read --allow-run --allow-write minify-svg-sprite.ts"
   },
+  "fmt": {
+    "exclude": ["static/*.css"]
+  },
   "lint": {
     "rules": {
       "tags": [
@@ -20,13 +23,15 @@
     "**/_fresh/*"
   ],
   "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.7.1/",
+    "$fresh/": "https://deno.land/x/fresh@1.7.3/",
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.0",
-    "preact": "https://esm.sh/preact@10.19.6",
-    "preact/": "https://esm.sh/preact@10.19.6/"
+    "preact": "https://esm.sh/preact@10.22.0",
+    "preact/": "https://esm.sh/preact@10.22.0/",
+    "stylelint": "npm:stylelint@^16.10.0",
+    "svgo": "npm:svgo@^3.3.2"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
