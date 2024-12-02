@@ -7,7 +7,7 @@ await load({ export: true });
 const PORT = 8080;
 
 function remoteAddress(
-  connectionInfo: Deno.ServeHandlerInfo
+  connectionInfo: Deno.ServeHandlerInfo,
 ): string | undefined {
   const { remoteAddr } = connectionInfo;
   if (!("hostname" in remoteAddr)) {
