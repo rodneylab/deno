@@ -1,10 +1,14 @@
 {
+  "fmt": {
+    "exclude": []
+  },
   "imports": {
     "@/": "./",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.0",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "js-temporal/": "https://esm.sh/@js-temporal/polyfill@0.4.4/"
   },
   "tasks": {
+    "check": "deno fmt --check && deno lint && deno check **/*.ts",
     "start": "deno run --allow-env --allow-net --allow-read --watch=utils/,main.ts main.ts",
     "test": "deno test --allow-env --allow-read --allow-net --allow-run --allow-write dev.ts"
   }
