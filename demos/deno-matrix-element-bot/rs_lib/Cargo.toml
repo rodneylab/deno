@@ -8,9 +8,9 @@ repository = "https://github.com/rodneylab/deno/tree/main/demos/deno-fresh-rss-f
 description = "Matrix Element bot WASM Rust code"
 
 [lib]
-crate_type = ["cdylib"]
+crate-type = ["cdylib"]
 
 [dependencies]
-matrix-sdk = { version = "0.7", default-features = false, features = ["e2e-encryption", "js", "native-tls"] }
+matrix-sdk = { version = "0.8", default-features = false, features = ["e2e-encryption", "js", "native-tls"] }
 wasm-bindgen = "=0.2.92"
 wasm-bindgen-futures = "=0.4.42"
