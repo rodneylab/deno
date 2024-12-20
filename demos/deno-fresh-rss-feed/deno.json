@@ -19,7 +19,7 @@
     "@deno/gfm": "jsr:@deno/gfm@^0.10.0",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
     "@std/front-matter": "jsr:@std/front-matter@^1.0.5",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/"
