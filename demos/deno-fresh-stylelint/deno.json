@@ -2,7 +2,7 @@
   "lock": false,
   "tasks": {
     "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "lint:css": "deno run --allow-env --allow-read --allow-sys stylelint.ts",
+    "lint:css": "deno run --allow-env --allow-read --allow-sys --allow-write stylelint.ts",
     "start": "deno run -A --watch=static/,routes/ dev.ts",
     "build": "deno run -A dev.ts build",
     "preview": "deno run -A main.ts",
@@ -26,8 +26,8 @@
     "@std/path": "jsr:@std/path@^1.0.8",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/",
-    "stylelint": "npm:stylelint@^16.12.0",
-    "stylelint-config-recommended": "npm:stylelint-config-recommended@^14.0.1"
+    "stylelint": "npm:stylelint@^16.13.2",
+    "stylelint-config-recommended": "npm:stylelint-config-recommended@^15.0.0"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
