@@ -14,6 +14,6 @@ const { data: optimisedSVG } = optimize(svgString, {
     },
   ],
 });
-await Deno.writeTextFile("./static/sprite.svg", optimisedSVG);
+await Deno.writeTextFile("./static/sprite.svg", `${optimisedSVG}\n`);
 
 Deno.exit(0);
