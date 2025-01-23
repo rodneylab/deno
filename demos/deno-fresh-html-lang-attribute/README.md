@@ -12,6 +12,7 @@
 # deno-fresh-html-lang-attribute
 
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/rodneylab/deno/tree/main/demos/deno-fresh-html-lang-attribute)
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/rodneylab/deno)
 
 Code from Rodney Lab
 <a href="https://rodneylab.com/deno-fresh-html-lang-attribute/">video where we
