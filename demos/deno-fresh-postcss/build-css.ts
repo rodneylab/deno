@@ -2,6 +2,7 @@ import { debounce } from "@std/async";
 import { relative, resolve } from "@std/path";
 import { config } from "@/postcss.config.ts";
 import postcss from "postcss/mod.js";
+import { extname } from "@std/path/extname";
 
 const STYLES_INPUT_DIRECTORY = "styles";
 
@@ -39,6 +40,8 @@ const watcher = Deno.watchFs([`./${STYLES_INPUT_DIRECTORY}`]);
 for await (const event of watcher) {
   const { paths } = event;
   paths.forEach((path) => {
-    debouncedBuildStyles(path);
+    if (extname(path) === ".css") {
+      debouncedBuildStyles(path);
+    }
   });
 }
