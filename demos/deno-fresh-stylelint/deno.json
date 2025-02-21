@@ -26,7 +26,7 @@
     "@std/path": "jsr:@std/path@^1.0.8",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/",
-    "stylelint": "npm:stylelint@^16.13.2",
+    "stylelint": "npm:stylelint@^16.14.1",
     "stylelint-config-recommended": "npm:stylelint-config-recommended@^15.0.0"
   },
   "compilerOptions": {
