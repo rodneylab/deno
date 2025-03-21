@@ -25,7 +25,7 @@
     "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/",
-    "stylelint": "npm:stylelint@^16.14.1",
+    "stylelint": "npm:stylelint@^16.16.0",
     "svgo": "npm:svgo@^3.3.2"
   },
   "compilerOptions": {
