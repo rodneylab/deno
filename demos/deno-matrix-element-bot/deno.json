@@ -6,8 +6,8 @@
     "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.19.1"
   },
   "imports": {
+    "js-temporal": "npm:@js-temporal/polyfill@^0.5.1",
     "@/": "./",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
-    "js-temporal/": "https://cdn.skypack.dev/@js-temporal/"
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.3"
   }
 }
