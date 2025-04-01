@@ -1,11 +1,23 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@std/dotenv@~0.225.3": "0.225.3"
+    "jsr:@std/dotenv@~0.225.3": "0.225.3",
+    "npm:@js-temporal/polyfill@~0.5.1": "0.5.1"
   },
   "jsr": {
     "@std/dotenv@0.225.3": {
       "integrity": "a95e5b812c27b0854c52acbae215856d9cce9d4bbf774d938c51d212711e8d4a"
+    }
+  },
+  "npm": {
+    "@js-temporal/polyfill@0.5.1": {
+      "integrity": "sha512-hloP58zRVCRSpgDxmqCWJNlizAlUgJFqG2ypq79DCvyv9tHjRYMDOcPFjzfl/A1/YxDvRCZz8wvZvmapQnKwFQ==",
+      "dependencies": [
+        "jsbi"
+      ]
+    },
+    "jsbi@4.3.2": {
+      "integrity": "sha512-9fqMSQbhJykSeii05nxKl4m6Eqn2P6rOlYiS+C5Dr/HPIU/7yZxu5qzbs40tgaFORiw2Amd0mirjxatXYMkIew=="
     }
   },
   "remote": {
@@ -15,7 +27,8 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/dotenv@~0.225.3"
+      "jsr:@std/dotenv@~0.225.3",
+      "npm:@js-temporal/polyfill@~0.5.1"
     ]
   }
 }

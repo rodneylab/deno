@@ -3,7 +3,7 @@ import {
   matrix_message as matrixMessage,
 } from "@/lib/deno_matrix_element_bot.generated.js";
 import { load } from "@std/dotenv";
-import { Temporal } from "js-temporal/polyfill/?dts";
+import { Temporal } from "js-temporal";
 
 await load({ export: true });
 
