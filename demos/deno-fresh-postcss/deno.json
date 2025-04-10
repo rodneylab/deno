@@ -22,7 +22,7 @@
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/async": "jsr:@std/async@^1.0.11",
+    "@std/async": "jsr:@std/async@^1.0.12",
     "@std/path": "jsr:@std/path@^1.0.8",
     "autoprefixer": "npm:autoprefixer@^10.4.21",
     "postcss-csso": "npm:postcss-csso@^6.0.1",
