@@ -3,7 +3,7 @@
     "exclude": []
   },
   "imports": {
-    "js-temporal": "npm:@js-temporal/polyfill@^0.5.0",
+    "js-temporal": "npm:@js-temporal/polyfill@^0.5.1",
     "@/": "./",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.3"
   },
