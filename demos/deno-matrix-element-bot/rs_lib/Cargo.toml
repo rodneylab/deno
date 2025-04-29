@@ -11,6 +11,7 @@ description = "Matrix Element bot WASM Rust code"
 crate-type = ["cdylib"]
 
 [dependencies]
-matrix-sdk = { version = "0.10.0", default-features = false, features = ["e2e-encryption", "js", "native-tls"] }
+getrandom = { version = "0.3.2", features = ["wasm_js"] }
+matrix-sdk = { version = "0.11.0", default-features = false, features = ["e2e-encryption", "js", "native-tls"] }
 wasm-bindgen = "=0.2.100"
 wasm-bindgen-futures = "=0.4.50"

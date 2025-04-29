@@ -3,11 +3,11 @@
     "check": "deno fmt --check && deno lint && deno check --allow-import **/*.ts",
     "start": "deno run -A  --watch=utils/,main.ts main.ts",
     "test": "deno test --allow-env --allow-read --allow-net --allow-run --allow-write dev.ts",
-    "wasmbuild": "deno run -A jsr:@deno/wasmbuild@0.19.1"
+    "wasmbuild": "RUSTFLAGS='--cfg getrandom_backend=\"wasm_js\"' deno run -A jsr:@deno/wasmbuild@0.19.2"
   },
   "imports": {
-    "js-temporal": "npm:@js-temporal/polyfill@^0.5.1",
     "@/": "./",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.3"
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
+    "js-temporal": "npm:@js-temporal/polyfill@^0.5.1"
   }
 }
