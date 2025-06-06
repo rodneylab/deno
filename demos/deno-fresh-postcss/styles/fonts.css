@@ -3,7 +3,8 @@
   font-family: "Nunito Sans";
   font-style: normal;
   font-weight: 400;
-  src: local(""),
+  src:
+    local(""),
     url("/fonts/nunito-sans-v12-latin-regular.woff2") format("woff2");
   /* Chrome 26+, Opera 23+, Firefox 39+ */
 }
@@ -13,7 +14,9 @@
   font-family: "Nunito Sans";
   font-style: normal;
   font-weight: 700;
-  src: local(""), url("/fonts/nunito-sans-v12-latin-700.woff2") format("woff2");
+  src:
+    local(""),
+    url("/fonts/nunito-sans-v12-latin-700.woff2") format("woff2");
   /* Chrome 26+, Opera 23+, Firefox 39+ */
 }
 
@@ -22,6 +25,8 @@
   font-family: "Raleway";
   font-style: normal;
   font-weight: 700;
-  src: local(""), url("/fonts/raleway-v28-latin-700.woff2") format("woff2");
+  src:
+    local(""),
+    url("/fonts/raleway-v28-latin-700.woff2") format("woff2");
   /* Chrome 26+, Opera 23+, Firefox 39+ */
 }
