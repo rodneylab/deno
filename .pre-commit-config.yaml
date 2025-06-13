@@ -4,13 +4,13 @@ repos:
         stages:
           - commit-msg
     repo: https://github.com/commitizen-tools/commitizen
-    rev: v4.4.1
+    rev: v4.8.3
   - repo: https://github.com/gitleaks/gitleaks
-    rev: v8.24.2
+    rev: v8.27.2
     hooks:
       - id: gitleaks
   - repo: https://github.com/google/yamlfmt
-    rev: v0.16.0
+    rev: v0.17.0
     hooks:
       - id: yamlfmt
   - repo: https://github.com/pre-commit/pre-commit-hooks
