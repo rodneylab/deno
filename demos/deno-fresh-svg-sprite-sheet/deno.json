@@ -22,11 +22,11 @@
     "@/": "./",
     "@preact/signals": "https://esm.sh/*@preact/signals@1.2.2",
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
-    "@std/dotenv": "jsr:@std/dotenv@^0.225.3",
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.5",
     "preact": "https://esm.sh/preact@10.22.0",
     "preact/": "https://esm.sh/preact@10.22.0/",
-    "stylelint": "npm:stylelint@^16.18.0",
-    "svgo": "npm:svgo@^3.3.2"
+    "stylelint": "npm:stylelint@^16.22.0",
+    "svgo": "npm:svgo@^4.0.0"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
