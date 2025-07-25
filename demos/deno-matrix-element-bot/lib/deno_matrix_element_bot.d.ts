@@ -36,4 +36,9 @@ export enum ShieldStateCode {
    * The sender was previously verified but changed their identity.
    */
   VerificationViolation = 5,
+  /**
+   * The `sender` field on the event does not match the owner of the device
+   * that established the Megolm session.
+   */
+  MismatchedSender = 6,
 }

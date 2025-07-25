@@ -1,12 +1,12 @@
 {
-  "version": "4",
+  "version": "5",
   "specifiers": {
-    "jsr:@std/dotenv@~0.225.3": "0.225.3",
+    "jsr:@std/dotenv@~0.225.5": "0.225.5",
     "npm:@js-temporal/polyfill@~0.5.1": "0.5.1"
   },
   "jsr": {
-    "@std/dotenv@0.225.3": {
-      "integrity": "a95e5b812c27b0854c52acbae215856d9cce9d4bbf774d938c51d212711e8d4a"
+    "@std/dotenv@0.225.5": {
+      "integrity": "9ce6f9d0ec3311f74a32535aa1b8c62ed88b1ab91b7f0815797d77a6f60c922f"
     }
   },
   "npm": {
@@ -27,7 +27,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@std/dotenv@~0.225.3",
+      "jsr:@std/dotenv@~0.225.5",
       "npm:@js-temporal/polyfill@~0.5.1"
     ]
   }

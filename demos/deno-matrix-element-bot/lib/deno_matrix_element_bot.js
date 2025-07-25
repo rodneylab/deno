@@ -4,7 +4,7 @@
 // deno-fmt-ignore-file
 // @ts-self-types="./deno_matrix_element_bot.d.ts"
 
-// source-hash: d7146def977993f377beb43e05023e0bd1a31b0e
+// source-hash: 24a904e8191b173b3a5081217fe7160306bd0a08
 import * as wasm from "./deno_matrix_element_bot.wasm";
 export * from "./deno_matrix_element_bot.internal.js";
 import { __wbg_set_wasm } from "./deno_matrix_element_bot.internal.js";
