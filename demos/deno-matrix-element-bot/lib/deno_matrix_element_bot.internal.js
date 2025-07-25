@@ -281,23 +281,23 @@ export function matrix_message(
 
 function __wbg_adapter_28(arg0, arg1) {
   wasm
-    ._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__he6920e4939551102(
+    ._dyn_core__ops__function__FnMut_____Output___R_as_wasm_bindgen__closure__WasmClosure___describe__invoke__hbfeb0de8fc282e65(
       arg0,
       arg1,
     );
 }
 
 function __wbg_adapter_33(arg0, arg1, arg2) {
-  wasm.closure959_externref_shim(arg0, arg1, arg2);
+  wasm.closure989_externref_shim(arg0, arg1, arg2);
 }
 
 function __wbg_adapter_85(arg0, arg1, arg2, arg3) {
-  wasm.closure267_externref_shim(arg0, arg1, arg2, arg3);
+  wasm.closure253_externref_shim(arg0, arg1, arg2, arg3);
 }
 
 /**
  * A machine-readable representation of the authenticity for a `ShieldState`.
- * @enum {0 | 1 | 2 | 3 | 4 | 5}
+ * @enum {0 | 1 | 2 | 3 | 4 | 5 | 6}
  */
 export const ShieldStateCode = Object.freeze({
   /**
@@ -330,6 +330,12 @@ export const ShieldStateCode = Object.freeze({
    */
   VerificationViolation: 5,
   "5": "VerificationViolation",
+  /**
+   * The `sender` field on the event does not match the owner of the device
+   * that established the Megolm session.
+   */
+  MismatchedSender: 6,
+  "6": "MismatchedSender",
 });
 
 const __wbindgen_enum_RequestCredentials = ["omit", "same-origin", "include"];
@@ -381,12 +387,12 @@ export function __wbg_call_7cccdd69e0791ae2() {
   }, arguments);
 }
 
-export function __wbg_clearTimeout_5a54f8841c30079a(arg0) {
+export function __wbg_clearTimeout_0b53d391c1b94dda(arg0) {
   const ret = clearTimeout(arg0);
   return ret;
 }
 
-export function __wbg_clearTimeout_86721db0036bea98(arg0) {
+export function __wbg_clearTimeout_5a54f8841c30079a(arg0) {
   const ret = clearTimeout(arg0);
   return ret;
 }
@@ -401,17 +407,17 @@ export function __wbg_done_769e5ede4b31c67b(arg0) {
   return ret;
 }
 
+export function __wbg_fetch_11bff8299d0ecd2b(arg0) {
+  const ret = fetch(arg0);
+  return ret;
+}
+
 export function __wbg_fetch_509096533071c657(arg0, arg1) {
   const ret = arg0.fetch(arg1);
   return ret;
 }
 
-export function __wbg_fetch_d36a73832f0a45e8(arg0) {
-  const ret = fetch(arg0);
-  return ret;
-}
-
-export function __wbg_getRandomValues_3d90134a348e46b3() {
+export function __wbg_getRandomValues_38097e921c2494c3() {
   return handleError(function (arg0, arg1) {
     globalThis.crypto.getRandomValues(getArrayU8FromWasm0(arg0, arg1));
   }, arguments);
@@ -605,7 +611,7 @@ export function __wbg_resolve_4851785c9c5f573d(arg0) {
   return ret;
 }
 
-export function __wbg_setTimeout_2e707715f8cc9497(arg0, arg1) {
+export function __wbg_setTimeout_73ce8df12de4f2f2(arg0, arg1) {
   const ret = setTimeout(arg0, arg1);
   return ret;
 }
@@ -729,18 +735,18 @@ export function __wbindgen_cb_drop(arg0) {
   return ret;
 }
 
-export function __wbindgen_closure_wrapper12484(arg0, arg1, arg2) {
-  const ret = makeMutClosure(arg0, arg1, 924, __wbg_adapter_28);
+export function __wbindgen_closure_wrapper12915(arg0, arg1, arg2) {
+  const ret = makeMutClosure(arg0, arg1, 954, __wbg_adapter_28);
   return ret;
 }
 
-export function __wbindgen_closure_wrapper13995(arg0, arg1, arg2) {
-  const ret = makeMutClosure(arg0, arg1, 255, __wbg_adapter_33);
+export function __wbindgen_closure_wrapper14421(arg0, arg1, arg2) {
+  const ret = makeMutClosure(arg0, arg1, 990, __wbg_adapter_33);
   return ret;
 }
 
-export function __wbindgen_closure_wrapper6449(arg0, arg1, arg2) {
-  const ret = makeMutClosure(arg0, arg1, 255, __wbg_adapter_28);
+export function __wbindgen_closure_wrapper6704(arg0, arg1, arg2) {
+  const ret = makeMutClosure(arg0, arg1, 241, __wbg_adapter_28);
   return ret;
 }
 
