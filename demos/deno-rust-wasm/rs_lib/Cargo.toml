@@ -11,5 +11,5 @@ description = "Basic image processing"
 crate-type = ["cdylib"]
 
 [dependencies]
-photon-rs = "=0.3.3"
-wasm-bindgen = "^0.2.92"
+photon-rs = "0.3.3"
+wasm-bindgen = "0.2.100"
